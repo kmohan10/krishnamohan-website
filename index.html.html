@@ -487,11 +487,23 @@ nav{
 .contact-links{display:flex;flex-direction:column;gap:14px}
 .contact-link{
   display:flex;align-items:center;gap:14px;
-  font-size:14px;font-weight:300;color:var(--text-body);
-  text-decoration:none;transition:color 0.2s;
+  font-size:16px;font-weight:400;color:var(--text-body);
+  text-decoration:none;transition:all 0.2s;
+  padding:4px 0;
 }
-.contact-link:hover{color:var(--amber)}
+.contact-link-email,.contact-link-linkedin{
+  color:#1a6bb5;
+  text-decoration:underline;
+  text-underline-offset:3px;
+}
+.contact-link-email:hover,.contact-link-linkedin:hover{
+  color:#0d4a8a;
+  text-decoration:underline;
+}
+.contact-link-location{color:var(--text-body)}
+.contact-link-location:hover{color:var(--amber)}
 .contact-link-dot{width:6px;height:6px;border-radius:50%;background:var(--amber);flex-shrink:0}
+.contact-location-icon{display:flex;align-items:center;color:var(--amber);flex-shrink:0}
 .contact-info-box{
   margin-top:32px;padding:24px;
   background:rgba(13,27,42,0.05);border-radius:8px;border-left:3px solid var(--amber);
@@ -959,16 +971,22 @@ footer{
     <h2 class="contact-h2">Let's Have <em>That</em><br>Conversation</h2>
     <p class="contact-body">Whether you're a founder wondering if AI is right for your company, or already convinced but unsure how to move — I'd love to have that conversation. No sales pitch, just a genuine discussion about where you are and where you want to go.</p>
     <div class="contact-links">
-      <a href="mailto:kmohan10@gmail.com" class="contact-link"><span class="contact-link-dot"></span>kmohan10@gmail.com</a>
-      <a href="https://www.linkedin.com/in/krishnamohn/" target="_blank" class="contact-link"><span class="contact-link-dot"></span>linkedin.com/in/krishnamohn</a>
-      <a href="#" class="contact-link"><span class="contact-link-dot"></span>Bengaluru, Karnataka, India</a>
+      <a href="mailto:kmohan10@gmail.com" class="contact-link contact-link-email"><span class="contact-link-dot"></span>kmohan10@gmail.com</a>
+      <a href="https://www.linkedin.com/in/krishnamohn/" target="_blank" class="contact-link contact-link-linkedin"><span class="contact-link-dot"></span>linkedin.com/in/krishnamohn</a>
+      <a href="https://maps.google.com/?q=Bengaluru,Karnataka,India" target="_blank" class="contact-link contact-link-location">
+        <span class="contact-location-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </span>Bengaluru, Karnataka, India
+      </a>
     </div>
     <div class="contact-info-box">
-      <p>Open to: Consulting engagements · Speaking &amp; keynotes · Corporate training · Mentoring partnerships</p>
+      <p style="font-size:15px;font-weight:400;color:var(--text-body);line-height:1.8;">Open to: <strong style="font-weight:500;color:var(--navy)">Consulting engagements</strong> · <strong style="font-weight:500;color:var(--navy)">Speaking &amp; keynotes</strong> · <strong style="font-weight:500;color:var(--navy)">Corporate training</strong> · <strong style="font-weight:500;color:var(--navy)">Mentoring partnerships</strong></p>
     </div>
   </div>
-  <div id="form-success" style="display:none;padding:20px 24px;background:rgba(212,146,42,0.1);border-radius:8px;border-left:3px solid var(--amber);margin-bottom:16px;">
-    <p style="font-size:14px;font-weight:400;color:var(--navy);">✓ Message sent! I'll get back to you within 24 hours.</p>
+  <div id="form-success" style="display:none;padding:32px 28px;background:rgba(212,146,42,0.1);border-radius:10px;border-left:4px solid var(--amber);margin-bottom:20px;">
+    <div style="font-size:28px;margin-bottom:10px;">🎉</div>
+    <p style="font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:700;color:var(--navy);margin-bottom:10px;line-height:1.2;">Thank you — I'm looking forward to our conversation!</p>
+    <p style="font-size:15px;font-weight:300;color:var(--text-body);line-height:1.7;">Your message has landed safely. I genuinely look forward to connecting and will respond personally within <strong style="font-weight:500;color:var(--amber);">24 hours</strong>. In the meantime, feel free to follow me on LinkedIn for daily AI insights.</p>
   </div>
   <div id="form-error" style="display:none;padding:20px 24px;background:rgba(220,53,69,0.08);border-radius:8px;border-left:3px solid #dc3545;margin-bottom:16px;">
     <p style="font-size:14px;font-weight:400;color:#dc3545;">Something went wrong. Please email me directly at kmohan10@gmail.com</p>

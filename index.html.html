@@ -289,7 +289,7 @@ nav{
 .service-card:hover::after{transform:scaleX(1)}
 .service-ghost-num{
   font-family:'Cormorant Garamond',serif;font-size:80px;font-weight:700;
-  color:var(--amber-light);opacity:0.32;line-height:1;margin-bottom:16px;letter-spacing:-3px;
+  color:var(--cream);opacity:0.04;line-height:1;margin-bottom:16px;letter-spacing:-3px;
 }
 .service-icon-wrap{
   width:52px;height:52px;background:rgba(212,146,42,0.1);border-radius:10px;
@@ -736,7 +736,7 @@ footer{
     <div class="section-label">About Me</div>
     <h2 class="problem-h2">Is Your Business <span>AI-Ready?</span></h2>
     <div class="section-divider"></div>
-    <p class="problem-body">I'm Krishna Mohan — an AI consultant, educator, and practitioner with 30 years of experience across corporate leadership, data engineering, and AI implementation. Armed with an MBA from the University of Cincinnati, USA and an MS in Engineering, I bridge the gap most consultants can't: business strategy <em>and</em> technical depth. I've led teams of 250+ at Thomson Reuters and Clarivate, and mentored 1000+ senior professionals globally through Great Learning's MIT and Johns Hopkins programs.</p>
+    <p class="problem-body">I'm Krishna Mohan — an AI consultant, educator, and practitioner with 30 years of experience across corporate leadership, data engineering, and AI implementation. Armed with an MBA from the University of Cincinnati and an MS in Engineering, I bridge the gap most consultants can't: business strategy <em>and</em> technical depth. I've led teams of 250+ at Thomson Reuters and Clarivate, and mentored 1000+ senior professionals globally through Great Learning's MIT and Johns Hopkins programs.</p>
     <ul class="pain-points">
       <li>
         <span class="pain-check"><svg viewBox="0 0 10 10" fill="none"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
@@ -783,7 +783,7 @@ footer{
           <div>
             <div class="edu-degree">MBA</div>
             <div class="edu-school">Carl H. Lindner College of Business</div>
-            <div class="edu-uni">University of Cincinnati, USA</div>
+            <div class="edu-uni">University of Cincinnati</div>
           </div>
         </div>
         <div class="edu-item">
@@ -793,7 +793,7 @@ footer{
           <div>
             <div class="edu-degree">MS · Engineering</div>
             <div class="edu-school">College of Engineering &amp; Applied Science</div>
-            <div class="edu-uni">University of Cincinnati, USA</div>
+            <div class="edu-uni">University of Cincinnati</div>
           </div>
         </div>
       </div>
@@ -967,7 +967,13 @@ footer{
       <p>Open to: Consulting engagements · Speaking &amp; keynotes · Corporate training · Mentoring partnerships</p>
     </div>
   </div>
-  <form class="contact-form reveal reveal-delay-1" action="https://formspree.io/f/mdappbwl" method="post" enctype="text/plain">
+  <div id="form-success" style="display:none;padding:20px 24px;background:rgba(212,146,42,0.1);border-radius:8px;border-left:3px solid var(--amber);margin-bottom:16px;">
+    <p style="font-size:14px;font-weight:400;color:var(--navy);">✓ Message sent! I'll get back to you within 24 hours.</p>
+  </div>
+  <div id="form-error" style="display:none;padding:20px 24px;background:rgba(220,53,69,0.08);border-radius:8px;border-left:3px solid #dc3545;margin-bottom:16px;">
+    <p style="font-size:14px;font-weight:400;color:#dc3545;">Something went wrong. Please email me directly at kmohan10@gmail.com</p>
+  </div>
+  <form id="contact-form" class="contact-form reveal reveal-delay-1" action="https://formspree.io/f/mdappbwl" method="POST">
     <div class="form-row">
       <div class="form-group"><label for="name">Full Name</label><input type="text" id="name" name="name" placeholder="Your name" required></div>
       <div class="form-group"><label for="email">Email Address</label><input type="email" id="email" name="email" placeholder="your@email.com" required></div>
@@ -1045,6 +1051,44 @@ footer{
 </footer>
 
 <script>
+// ── Formspree AJAX submission ──
+document.addEventListener('DOMContentLoaded', function() {
+  var form = document.getElementById('contact-form');
+  if (!form) return;
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    var btn = form.querySelector('.btn-submit');
+    var successBox = document.getElementById('form-success');
+    var errorBox = document.getElementById('form-error');
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+    fetch('https://formspree.io/f/mdappbwl', {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    })
+    .then(function(response) {
+      if (response.ok) {
+        successBox.style.display = 'block';
+        errorBox.style.display = 'none';
+        form.reset();
+        btn.textContent = 'Message Sent ✓';
+        btn.style.background = 'var(--amber)';
+        // scroll success message into view
+        successBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      } else {
+        return response.json().then(function(data) { throw data; });
+      }
+    })
+    .catch(function() {
+      errorBox.style.display = 'block';
+      successBox.style.display = 'none';
+      btn.textContent = 'Send Message →';
+      btn.disabled = false;
+    });
+  });
+});
+
 function toggleMenu(){document.getElementById('mobile-menu').classList.toggle('open')}
 const reveals=document.querySelectorAll('.reveal');
 const obs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:0.12});

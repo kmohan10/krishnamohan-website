@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why Most AI Roadmaps Fail Before They Start — Krishna Mohan</title>
+    <meta name="description"
+        content="AI roadmaps don't fail during execution. They fail in three decisions made in boardrooms before the work begins.">
+    <meta property="og:title" content="Why Most AI Roadmaps Fail Before They Start">
+    <meta property="og:description"
+        content="AI roadmaps don't fail during execution. They fail in three decisions made in boardrooms before the work begins.">
+    <meta property="og:url" content="https://krishnamohan.co/why-ai-roadmaps-fail">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap"
+        rel="stylesheet">
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --navy: #0D1B2A;
+            --navy-mid: #1A2F45;
+            --navy-light: #2A4A6B;
+            --amber: #D4922A;
+            --amber-light: #F0B855;
+            --amber-glow: rgba(212, 146, 42, 0.10);
+            --cream: #F5F0E8;
+            --cream-dark: #E8E0D0;
+            --white: #FFFFFF;
+            --text-body: #4A5568;
+            --text-muted: #6B7A8A;
+            --border-dark: rgba(245, 240, 232, 0.08);
+            --muted-dark: rgba(245, 240, 232, 0.45);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--cream);
+            color: var(--navy);
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 300;
+            line-height: 1.8;
+            font-size: 16px;
+        }
+
+        /* ── NAV ── */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            height: 72px;
+            background: rgba(245, 240, 232, 0.92);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--cream-dark);
+            padding: 0 72px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .nav-brand-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--navy);
+            letter-spacing: 0.5px;
+            line-height: 1;
+        }
+
+        .nav-brand-sub {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 9px;
+            font-weight: 300;
+            color: var(--amber);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-top: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 12px;
+            font-weight: 400;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--amber);
+        }
+
+        .nav-cta {
+            background: var(--navy) !important;
+            color: var(--cream) !important;
+            padding: 0.5rem 1.25rem;
+            border-radius: 3px;
+            transition: opacity 0.2s !important;
+        }
+
+        .nav-cta:hover {
+            opacity: 0.8;
+            color: var(--cream) !important;
+        }
+
+        /* ── ARTICLE HEADER ── */
+        .article-header {
+            padding: 140px 72px 64px;
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .watermark {
+            position: absolute;
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 700;
+            font-size: clamp(60px, 10vw, 140px);
+            color: var(--navy);
+            opacity: 0.04;
+            letter-spacing: -2px;
+            white-space: nowrap;
+            pointer-events: none;
+            user-select: none;
+            bottom: -10px;
+            left: 0;
+            z-index: 0;
+        }
+
+        .back-link {
+            display: inline-block;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            text-decoration: none;
+            margin-bottom: 2.5rem;
+            transition: color 0.2s;
+            position: relative;
+            z-index: 1;
+        }
+
+        .back-link::before {
+            content: '← ';
+        }
+
+        .back-link:hover {
+            color: var(--amber);
+        }
+
+        .section-label {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--amber);
+            margin-bottom: 16px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .article-header h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.4rem, 5.5vw, 3.8rem);
+            font-weight: 700;
+            line-height: 1.1;
+            color: var(--navy);
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+            position: relative;
+            z-index: 1;
+        }
+
+        .article-header h1 em {
+            font-style: italic;
+            color: var(--amber);
+        }
+
+        .article-meta {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 11px;
+            font-weight: 400;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .article-meta .dot {
+            color: var(--amber);
+        }
+
+        /* ── GRAPHIC ── */
+        .graphic-wrap {
+            max-width: 900px;
+            margin: 0 auto 4rem;
+            padding: 0 72px;
+        }
+
+        .graphic-wrap svg {
+            width: 100%;
+            border-radius: 6px;
+            display: block;
+        }
+
+        /* ── ARTICLE BODY ── */
+        .article-body {
+            max-width: 740px;
+            margin: 0 auto;
+            padding: 0 72px 96px;
+        }
+
+        .intro {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: var(--navy);
+            line-height: 1.85;
+            margin-bottom: 3rem;
+            padding-bottom: 3rem;
+            border-bottom: 1px solid var(--cream-dark);
+        }
+
+        /* ── SECTIONS ── */
+        .section {
+            margin-bottom: 3.5rem;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: baseline;
+            gap: 1.25rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--cream-dark);
+        }
+
+        .section-num {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.2rem;
+            font-weight: 700;
+            color: var(--amber);
+            line-height: 1;
+            opacity: 0.65;
+            flex-shrink: 0;
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.55rem;
+            font-weight: 600;
+            color: var(--navy);
+            line-height: 1.25;
+        }
+
+        .article-body p {
+            font-family: 'DM Sans', sans-serif;
+            color: var(--text-body);
+            margin-bottom: 1.1rem;
+            font-size: 0.975rem;
+            font-weight: 300;
+            line-height: 1.8;
+        }
+
+        /* ── CALLOUT ── */
+        .callout {
+            border-left: 3px solid var(--amber);
+            padding: 1.25rem 1.75rem;
+            margin: 2rem 0;
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 1.2rem;
+            color: var(--navy);
+            line-height: 1.65;
+            background: var(--amber-glow);
+            border-radius: 0 4px 4px 0;
+        }
+
+        /* ── SOLUTION BLOCK ── */
+        .solution {
+            background: var(--white);
+            border: 1px solid var(--cream-dark);
+            border-left: 3px solid var(--amber);
+            border-radius: 0 6px 6px 0;
+            padding: 1.5rem 1.75rem;
+            margin: 1.75rem 0;
+        }
+
+        .solution-label {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 13px;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--amber);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .solution p {
+            color: var(--text-body);
+            font-size: 0.95rem;
+            margin-bottom: 0.85rem;
+            font-weight: 300;
+        }
+
+        .solution p:last-child {
+            margin-bottom: 0;
+        }
+
+        .solution ul {
+            margin: 0.5rem 0 0.85rem 1.25rem;
+            padding: 0;
+        }
+
+        .solution ul li {
+            font-family: 'DM Sans', sans-serif;
+            color: var(--text-body);
+            font-size: 0.95rem;
+            font-weight: 300;
+            margin-bottom: 0.5rem;
+            line-height: 1.7;
+        }
+
+        .solution ul li::marker {
+            color: var(--amber);
+        }
+
+        /* ── CLOSING ── */
+        .closing {
+            background: var(--navy);
+            border-radius: 8px;
+            padding: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .closing h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--cream);
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border-dark);
+        }
+
+        .closing p {
+            font-family: 'DM Sans', sans-serif;
+            color: var(--muted-dark);
+            font-size: 0.975rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        .closing p:last-of-type {
+            margin-bottom: 0;
+        }
+
+        .cta-block {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border-dark);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .cta-text {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.875rem;
+            font-weight: 300;
+            color: var(--muted-dark);
+        }
+
+        .cta-btn {
+            display: inline-block;
+            background: var(--amber);
+            color: var(--navy);
+            text-decoration: none;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 0.85rem 1.75rem;
+            border-radius: 3px;
+            transition: background 0.2s, transform 0.2s;
+            white-space: nowrap;
+        }
+
+        .cta-btn:hover {
+            background: var(--amber-light);
+            transform: translateY(-2px);
+        }
+
+        /* ── FOOTER ── */
+        footer {
+            background: var(--navy-mid);
+            border-top: 1px solid var(--border-dark);
+            padding: 2.5rem 72px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer-watermark {
+            position: absolute;
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 700;
+            font-size: clamp(40px, 8vw, 100px);
+            color: var(--cream);
+            opacity: 0.04;
+            letter-spacing: -2px;
+            white-space: nowrap;
+            pointer-events: none;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 0;
+        }
+
+        .footer-inner {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--cream);
+        }
+
+        .footer-copy {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 10px;
+            font-weight: 400;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--muted-dark);
+        }
+
+        .footer-copy a {
+            color: var(--amber-light);
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+
+        .footer-copy a:hover {
+            color: var(--amber);
+        }
+
+        /* ── REVEAL ── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 768px) {
+            nav {
+                padding: 0 24px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .article-header {
+                padding: 100px 24px 48px;
+            }
+
+            .graphic-wrap {
+                padding: 0 24px;
+            }
+
+            .article-body {
+                padding: 0 24px 64px;
+            }
+
+            footer {
+                padding: 2rem 24px;
+            }
+
+            .footer-inner {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .cta-block {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAV -->
+    <nav>
+        <a href="https://krishnamohan.co" class="nav-brand">
+            <svg width="36" height="36" viewBox="0 0 72 72" fill="none">
+                <circle cx="36" cy="36" r="34" stroke="#D4922A" stroke-width="0.8" opacity="0.4" />
+                <line x1="20" y1="18" x2="20" y2="54" stroke="#0D1B2A" stroke-width="3.5" stroke-linecap="round" />
+                <line x1="20" y1="36" x2="38" y2="18" stroke="#0D1B2A" stroke-width="3" stroke-linecap="round" />
+                <line x1="20" y1="36" x2="38" y2="54" stroke="#0D1B2A" stroke-width="3" stroke-linecap="round" />
+                <line x1="40" y1="18" x2="40" y2="54" stroke="#D4922A" stroke-width="3.5" stroke-linecap="round" />
+                <line x1="40" y1="18" x2="50" y2="36" stroke="#D4922A" stroke-width="3" stroke-linecap="round" />
+                <line x1="50" y1="36" x2="60" y2="18" stroke="#D4922A" stroke-width="3" stroke-linecap="round" />
+                <line x1="60" y1="18" x2="60" y2="54" stroke="#D4922A" stroke-width="3.5" stroke-linecap="round" />
+                <circle cx="20" cy="36" r="3.5" fill="#D4922A" />
+                <circle cx="50" cy="36" r="3" fill="#0D1B2A" opacity="0.4" />
+            </svg>
+            <div>
+                <div class="nav-brand-text">Krishna Mohan</div>
+                <div class="nav-brand-sub">AI Consultant · Educator</div>
+            </div>
+        </a>
+        <ul class="nav-links">
+            <li><a href="https://krishnamohan.co/#about">About</a></li>
+            <li><a href="https://krishnamohan.co/#services">Services</a></li>
+            <li><a href="https://krishnamohan.co/#blog">Insights</a></li>
+            <li><a href="https://krishnamohan.co/#checklist">Free Checklist</a></li>
+            <li><a href="https://calendly.com/krishnamohn/30min" class="nav-cta">Book a Call</a></li>
+        </ul>
+    </nav>
+
+    <!-- ARTICLE HEADER -->
+    <div class="article-header">
+        <div class="watermark">KRISHNA MOHAN</div>
+        <a href="https://krishnamohan.co/#blog" class="back-link">Back to Insights</a>
+        <div class="section-label">Article · April 2026</div>
+        <h1>Why Most AI Roadmaps Fail <em>Before They Start</em></h1>
+        <div class="article-meta">
+            Krishna Mohan
+            <span class="dot">·</span>
+            April 2026
+            <span class="dot">·</span>
+            8 min read
+        </div>
+    </div>
+
+    <!-- GRAPHIC -->
+    <div class="graphic-wrap">
+        <svg viewBox="0 0 680 400" xmlns="http://www.w3.org/2000/svg" role="img">
+            <title>Most AI roadmaps are not transformation plans — Krishna Mohan</title>
+            <rect x="0" y="0" width="680" height="400" fill="#0D1B2A" />
+            <rect x="0" y="0" width="5" height="400" fill="#D4922A" />
+            <rect x="40" y="44" width="48" height="2.5" fill="#D4922A" rx="1.5" />
+            <text x="40" y="126" font-family="Georgia, serif" font-size="27" font-weight="700" fill="#F5F0E8"
+                letter-spacing="-0.4">"Most AI roadmaps are not</text>
+            <text x="40" y="162" font-family="Georgia, serif" font-size="27" font-weight="700" fill="#F5F0E8"
+                letter-spacing="-0.4">transformation plans.</text>
+            <text x="40" y="218" font-family="Georgia, serif" font-size="27" font-weight="400" fill="#6B7A8A"
+                letter-spacing="-0.3">They are career protection plans</text>
+            <text x="40" y="254" font-family="Georgia, serif" font-size="27" font-weight="400" fill="#6B7A8A"
+                letter-spacing="-0.3">dressed up in technology language."</text>
+            <rect x="40" y="304" width="600" height="0.5" fill="#1A2F45" />
+            <text x="40" y="334" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="#D4922A"
+                letter-spacing="0.1em">KRISHNA MOHAN</text>
+            <text x="40" y="356" font-family="Arial, sans-serif" font-size="14" fill="#6B7A8A">Why Most AI Roadmaps Fail
+                Before They Start</text>
+            <a href="https://krishnamohan.co" target="_blank">
+                <text x="640" y="356" font-family="Arial, sans-serif" font-size="14" fill="#D4922A" text-anchor="end"
+                    text-decoration="underline" style="cursor:pointer;">krishnamohan.co</text>
+            </a>
+        </svg>
+    </div>
+
+    <!-- ARTICLE BODY -->
+    <div class="article-body">
+
+        <p class="intro reveal">Every company I speak with has an AI roadmap. What most of them do not have is an honest
+            answer to a simpler question: have we done the foundational work to make any of this real?<br><br>In my
+            experience, AI roadmaps do not fail during execution. They fail in three decisions made in boardrooms and
+            leadership offsites, long before the first line of code is written — and long before the teams who will be
+            held accountable have any say.</p>
+
+        <!-- SECTION 1 -->
+        <div class="section reveal">
+            <div class="section-header">
+                <span class="section-num">01</span>
+                <span class="section-title">The wrong project gets picked</span>
+            </div>
+            <p>When a company decides to pilot AI, there is an invisible pull toward the high-profile project. The one
+                that makes the quarterly update sound visionary. The one that signals to the market that this is an
+                AI-first company.</p>
+            <p>This is precisely the wrong place to start. Every new technology carries known unknowns — risks you can
+                anticipate but not fully plan for — and unknown unknowns that no one in the company has the expertise to
+                solve. When you pilot on a high-stakes project, these surface in front of your most important customers
+                and most unforgiving stakeholders.</p>
+            <p>What follows is predictable: early signs of strain appear, but admitting failure on a flagship initiative
+                is politically unacceptable, so leadership doubles down. The hole gets deeper. When the project finally
+                collapses, the search for a scapegoat begins. Teams who worked hard to deliver on a directionless
+                mandate are blamed and let go. The CXOs who made the original call move on to the next initiative.</p>
+            <div class="solution">
+                <div class="solution-label">The Better Way</div>
+                <p>Pilot AI on a project that can afford to fail — but complex enough to generate real learning. In
+                    distribution, the instinct is to pilot on high cost-of-delay items. Resist that. Instead, pick an
+                    item that travels through multiple transit points and takes far longer than it should. Can AI reduce
+                    both the stops and the duration? This has enough complexity to produce genuine insight, while a
+                    stumble costs very little. The real output is not the logistics win — it is your organisation's
+                    growing capacity to tackle harder problems next.</p>
+                <p>Two questions guide good pilot selection:</p>
+                <ul>
+                    <li>Does failure here materially hurt customers or revenue?</li>
+                    <li>Is there enough complexity that the team will genuinely learn?</li>
+                </ul>
+                <p>If the first answer is no and the second is yes, you have found your starting point.</p>
+            </div>
+        </div>
+
+        <!-- SECTION 2 -->
+        <div class="section reveal">
+            <div class="section-header">
+                <span class="section-num">02</span>
+                <span class="section-title">Reskilling employees — is it sincere?</span>
+            </div>
+            <p>While pilot projects were being announced, another initiative was running in parallel: the AI reskilling
+                programme. Employees went through two-day workshops. Certificates were issued. LinkedIn feeds filled up
+                with enthusiastic posts — and the enthusiasm was genuine. What most of those employees did not realise
+                is that they had just climbed the first rung of a ladder with at least six more rungs before their
+                profile makes the first cut for any meaningful AI role.</p>
+            <p>What was happening in the boardroom during those workshops is a harder story. Headcount reduction plans
+                were being drawn up.</p>
+            <div class="callout">"This is not reskilling — it is the appearance of reskilling, designed to satisfy a
+                narrative, not develop a workforce."</div>
+            <div class="solution">
+                <div class="solution-label">The Better Way</div>
+                <p>Genuine reskilling starts with the right people. Identify five to ten high performers with a record
+                    of solving complex problems through unconventional thinking. Cognitive flexibility matters more here
+                    than existing technical credentials. Put them on the low-stakes, high-complexity pilot projects and
+                    track everything:</p>
+                <ul>
+                    <li>What approaches were tried and what failed</li>
+                    <li>Skills and mindsets the work actually required</li>
+                    <li>How cross-team coordination differed from conventional projects</li>
+                    <li>The real learning curve — not the brochure version</li>
+                </ul>
+                <p>These people are not just solving a logistics problem. They are generating the blueprint from which
+                    the rest of the organisation's reskilling can be designed — grounded in what your specific context
+                    demands, not a generic AI curriculum.</p>
+                <p>Be honest with the broader workforce about what the journey looks like. Invest specifically in those
+                    who show genuine drive. And acknowledge the hard truth plainly: despite best efforts on both sides,
+                    some will not make the transition. A company that gave people a real opportunity and a fair process
+                    can make that call with integrity. One that handed out certificates while writing termination lists
+                    cannot.</p>
+            </div>
+        </div>
+
+        <!-- SECTION 3 -->
+        <div class="section reveal">
+            <div class="section-header">
+                <span class="section-num">03</span>
+                <span class="section-title">The foundation nobody checked</span>
+            </div>
+            <p>Before a single AI tool is selected, before a pilot project is named, there is a question that almost
+                never gets asked in the boardroom: is our data actually ready for this?</p>
+            <p>AI does not create order. It amplifies what already exists — including the mess. If your customer data
+                lives across three spreadsheets, a WhatsApp group, and someone's memory, no algorithm is going to save
+                you. Tribal knowledge — information passed through word of mouth, institutional habit, or one person's
+                notebook — is not a foundation. It is a liability.</p>
+            <p>The painful irony is that companies rushing into AI roadmaps are often the same ones that have not done
+                the unglamorous work of standardising their data, documenting their processes, or auditing where
+                critical information actually lives. A simple spreadsheet done consistently beats a sophisticated AI
+                platform sitting on top of chaos.</p>
+            <div class="solution">
+                <div class="solution-label">The Better Way</div>
+                <p>Before committing to any roadmap, answer three questions honestly:</p>
+                <ul>
+                    <li>Where does our data live, and who controls it?</li>
+                    <li>Is it complete and reliable enough to draw conclusions from?</li>
+                    <li>Do we have a baseline process that AI can improve — or are we hoping AI will create the process
+                        for us?</li>
+                </ul>
+                <p>If the answers are uncomfortable, the roadmap needs to wait. Fix the foundation first.</p>
+            </div>
+        </div>
+
+        <!-- CLOSING -->
+        <div class="closing reveal">
+            <h2>What a well-thought-out AI adoption looks like</h2>
+            <p>The companies that emerge stronger from this period are not the fastest movers. They are the ones that
+                asked the uncomfortable questions before anyone else did — and had the discipline to fix what they
+                found.</p>
+            <p>Check your foundation before you name a project. Audit where your data lives, whether your processes are
+                documented, and whether your team has the baseline to build on. If the answers are uncomfortable, that
+                is your starting point — not a roadmap slide.</p>
+            <p>Pick the pilot where failure is survivable and learning is guaranteed. Use it to build your
+                organisation's capability, not to impress a board. Let your best problem-solvers run it, track
+                everything they learn, and let that experience design the reskilling programme your workforce actually
+                needs.</p>
+            <p>Be honest with your people about the stakes and the path. The ones who rise to meet it are your most
+                valuable asset in this transition.</p>
+            <p>The roadmap is the easy part. The foundation, the right project, and the honest conversation with your
+                workforce — that is what most companies skip.</p>
+            <div class="cta-block">
+                <span class="cta-text">Not sure where your organisation stands?</span>
+                <a href="https://krishnamohan.co/#checklist" class="cta-btn">Get the Free AI Readiness Checklist →</a>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-watermark">KRISHNA MOHAN</div>
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <svg width="24" height="24" viewBox="0 0 72 72" fill="none">
+                    <circle cx="36" cy="36" r="34" stroke="#D4922A" stroke-width="0.8" opacity="0.5" />
+                    <line x1="20" y1="18" x2="20" y2="54" stroke="#F5F0E8" stroke-width="3.5" stroke-linecap="round" />
+                    <line x1="20" y1="36" x2="38" y2="18" stroke="#F5F0E8" stroke-width="3" stroke-linecap="round" />
+                    <line x1="20" y1="36" x2="38" y2="54" stroke="#F5F0E8" stroke-width="3" stroke-linecap="round" />
+                    <line x1="40" y1="18" x2="40" y2="54" stroke="#D4922A" stroke-width="3.5" stroke-linecap="round" />
+                    <line x1="40" y1="18" x2="50" y2="36" stroke="#D4922A" stroke-width="3" stroke-linecap="round" />
+                    <line x1="50" y1="36" x2="60" y2="18" stroke="#D4922A" stroke-width="3" stroke-linecap="round" />
+                    <line x1="60" y1="18" x2="60" y2="54" stroke="#D4922A" stroke-width="3.5" stroke-linecap="round" />
+                    <circle cx="20" cy="36" r="3.5" fill="#D4922A" />
+                    <circle cx="50" cy="36" r="3" fill="#F5F0E8" opacity="0.5" />
+                </svg>
+                <span class="footer-name">Krishna Mohan</span>
+            </div>
+            <div class="footer-copy">
+                © 2026 <a href="https://krishnamohan.co">krishnamohan.co</a> · AI Consultant · Educator · Practitioner
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const reveals = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.12 });
+        reveals.forEach(el => observer.observe(el));
+    </script>
+
+</body>
+
+</html>

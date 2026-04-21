@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LinkedIn Content Calendar — Krishna Mohan</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', system-ui, sans-serif; background: #f5f4f0; color: #1a1a1a; padding: 2rem 1rem; min-height: 100vh; }
+  .container { max-width: 820px; margin: 0 auto; }
+  .page-header { margin-bottom: 1.5rem; display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+  .page-header-text h1 { font-size: 22px; font-weight: 600; color: #0a66c2; }
+  .page-header-text p { font-size: 14px; color: #555; margin-top: 4px; }
+  .stats-row { display: flex; gap: 12px; margin-bottom: 1.5rem; flex-wrap: wrap; }
+  .stat-card { background: #fff; border: 1px solid #e0ddd6; border-radius: 10px; padding: 0.75rem 1.1rem; min-width: 120px; }
+  .stat-label { font-size: 11px; color: #888; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
+  .stat-value { font-size: 22px; font-weight: 600; color: #0a66c2; margin-top: 2px; }
+  .legend { display: flex; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap; align-items: center; }
+  .legend-item { display: flex; align-items: center; gap: 6px; font-size: 13px; color: #555; }
+  .badge { display: inline-block; font-size: 11px; font-weight: 600; padding: 3px 9px; border-radius: 20px; white-space: nowrap; }
+  .badge-short { background: #e0f2e9; color: #1a6b3c; }
+  .badge-article { background: #ddeeff; color: #0a4a8a; }
+  .badge-custom { background: #f3eaff; color: #6b21a8; }
+  .week-card { background: #fff; border: 1px solid #e0ddd6; border-radius: 12px; margin-bottom: 1rem; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+  .week-header { display: flex; align-items: center; justify-content: space-between; padding: 0.85rem 1.25rem; background: #fafaf8; cursor: pointer; border-bottom: 1px solid #e0ddd6; user-select: none; }
+  .week-header:hover { background: #f2f1ed; }
+  .week-label { font-size: 12px; font-weight: 600; color: #0a66c2; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 2px; }
+  .week-theme { font-size: 15px; font-weight: 600; color: #1a1a1a; }
+  .week-progress { font-size: 12px; color: #888; margin-top: 2px; }
+  .chevron { font-size: 11px; color: #888; transition: transform 0.2s; display: inline-block; }
+  .chevron.open { transform: rotate(180deg); }
+  .week-body { display: none; padding: 0.25rem 1.25rem 1rem; }
+  .week-body.open { display: block; }
+  .post-row { display: grid; grid-template-columns: 28px 80px 90px 1fr 160px; gap: 10px; align-items: start; padding: 0.85rem 0; border-bottom: 1px solid #f0ede8; }
+  .post-row:last-child { border-bottom: none; }
+  .post-row.completed .post-topic { text-decoration: line-through; color: #aaa; }
+  .post-row.completed .post-prompt { color: #ccc; }
+  .check-wrap { padding-top: 2px; }
+  input[type="checkbox"] { width: 16px; height: 16px; accent-color: #0a66c2; cursor: pointer; margin-top: 1px; }
+  .post-day { font-size: 13px; color: #666; padding-top: 2px; }
+  .post-topic { font-size: 14px; color: #1a1a1a; line-height: 1.5; margin-bottom: 5px; }
+  .post-prompt { font-size: 12px; color: #888; line-height: 1.5; font-style: italic; }
+  .prompt-label { font-style: normal; font-weight: 600; color: #0a66c2; }
+  .date-input-wrap { display: flex; flex-direction: column; gap: 4px; }
+  .date-label { font-size: 11px; color: #aaa; }
+  input[type="date"] { font-size: 12px; border: 1px solid #e0ddd6; border-radius: 6px; padding: 4px 6px; color: #444; background: #fafaf8; width: 100%; cursor: pointer; }
+  input[type="date"]:focus { outline: none; border-color: #0a66c2; }
+  .published-badge { display: inline-block; font-size: 11px; background: #e0f2e9; color: #1a6b3c; padding: 2px 7px; border-radius: 10px; font-weight: 600; }
+
+  /* Add custom post section */
+  .custom-section { background: #fff; border: 1px solid #e0ddd6; border-radius: 12px; padding: 1.25rem; margin-bottom: 1rem; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+  .custom-section h2 { font-size: 15px; font-weight: 600; color: #1a1a1a; margin-bottom: 1rem; display: flex; align-items: center; gap: 8px; }
+  .custom-section h2 span { font-size: 18px; }
+  .add-form { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
+  .add-form input, .add-form select, .add-form textarea { font-size: 13px; border: 1px solid #e0ddd6; border-radius: 7px; padding: 7px 10px; color: #1a1a1a; background: #fafaf8; width: 100%; font-family: inherit; }
+  .add-form textarea { resize: vertical; min-height: 60px; grid-column: 1 / -1; }
+  .add-form input:focus, .add-form select:focus, .add-form textarea:focus { outline: none; border-color: #0a66c2; background: #fff; }
+  .add-form .full-width { grid-column: 1 / -1; }
+  .btn-add { background: #0a66c2; color: #fff; border: none; border-radius: 7px; padding: 8px 20px; font-size: 13px; font-weight: 600; cursor: pointer; transition: background 0.15s; }
+  .btn-add:hover { background: #084f9a; }
+  .btn-add:active { transform: scale(0.98); }
+
+  /* Custom posts list */
+  .custom-posts-list { margin-top: 1rem; }
+  .custom-post-row { display: grid; grid-template-columns: 28px 1fr 90px 150px 28px; gap: 10px; align-items: start; padding: 0.75rem 0; border-bottom: 1px solid #f0ede8; }
+  .custom-post-row:last-child { border-bottom: none; }
+  .custom-post-row.completed .post-topic { text-decoration: line-through; color: #aaa; }
+  .btn-delete { background: none; border: none; color: #ddd; cursor: pointer; font-size: 16px; padding: 0; transition: color 0.15s; line-height: 1; padding-top: 2px; }
+  .btn-delete:hover { color: #e24b4a; }
+  .empty-custom { font-size: 13px; color: #bbb; font-style: italic; padding: 0.5rem 0; }
+
+  .footer { margin-top: 2rem; font-size: 12px; color: #aaa; text-align: center; }
+  .section-divider { font-size: 13px; font-weight: 600; color: #888; text-transform: uppercase; letter-spacing: 0.06em; margin: 1.5rem 0 0.75rem; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="page-header">
+    <div class="page-header-text">
+      <h1>LinkedIn Content Calendar</h1>
+      <p>Krishna Mohan · AI Consultant & Educator · 1–2 posts per week</p>
+    </div>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat-card"><div class="stat-label">Total posts</div><div class="stat-value" id="stat-total">0</div></div>
+    <div class="stat-card"><div class="stat-label">Published</div><div class="stat-value" id="stat-done">0</div></div>
+    <div class="stat-card"><div class="stat-label">Remaining</div><div class="stat-value" id="stat-remain">0</div></div>
+    <div class="stat-card"><div class="stat-label">% complete</div><div class="stat-value" id="stat-pct">0%</div></div>
+  </div>
+
+  <div class="legend">
+    <div class="legend-item"><span class="badge badge-short">Short post</span> 150–300 words</div>
+    <div class="legend-item"><span class="badge badge-article">Article</span> Long-form</div>
+    <div class="legend-item"><span class="badge badge-custom">Custom</span> Added by you</div>
+  </div>
+
+  <div class="section-divider">8-week plan</div>
+  <div id="calendar"></div>
+
+  <div class="section-divider">Additional posts</div>
+  <div class="custom-section">
+    <h2><span>+</span> Add a post not on the plan</h2>
+    <div class="add-form">
+      <input type="text" id="cf-topic" placeholder="Post topic / title *" />
+      <select id="cf-type">
+        <option value="short">Short post</option>
+        <option value="article">Article</option>
+      </select>
+      <input type="text" id="cf-day" placeholder="Day (e.g. Monday, Week 3)" />
+      <input type="date" id="cf-date" title="Date published" />
+      <textarea id="cf-prompt" placeholder="Notes or AI prompt (optional)"></textarea>
+    </div>
+    <button class="btn-add" onclick="addCustomPost()">Add post</button>
+    <div class="custom-posts-list" id="custom-list"></div>
+  </div>
+
+  <div class="footer">linkedin.com/in/krishnamohn · Data saved in your browser</div>
+</div>
+
+<script>
+const STORAGE_KEY = 'km_linkedin_cal_v2';
+
+const weeks = [
+  { theme: "Establish your POV on AI", posts: [
+    { day: "Tuesday", type: "short", topic: "The 3 questions every SMB founder should ask before investing in AI", prompt: "Voice note: What do founders get wrong in their first AI conversation with you?" },
+    { day: "Friday", type: "short", topic: "What I learned mentoring 200+ senior leaders on AI — the pattern no one talks about", prompt: "Voice note: What's the most common mindset barrier you see in senior professionals?" }
+  ]},
+  { theme: "Practitioner credibility", posts: [
+    { day: "Tuesday", type: "short", topic: "I spent 9 years at Thomson Reuters building AI-ready data systems. Here's what the textbooks miss.", prompt: "Voice note: One technical insight from your TR days that changed how you think about AI implementation." },
+    { day: "Friday", type: "article", topic: "Why most AI roadmaps fail before they start — and the one thing that fixes it", prompt: "Expand on your AI Hangover piece: what does a good AI roadmap actually look like for a 50-person company?" }
+  ]},
+  { theme: "Teach something practical", posts: [
+    { day: "Wednesday", type: "short", topic: "5 AI tools an SMB can use today with zero technical team — and what each one is actually good for", prompt: "Voice note: Walk through Claude, Otter.ai, Canva AI, ChatGPT, and one more. One sentence on each." },
+    { day: "Saturday", type: "short", topic: "The difference between AI strategy and AI tools (and why most companies confuse the two)", prompt: "Voice note: Give a concrete example of a company that bought tools but had no strategy." }
+  ]},
+  { theme: "Human angle — your teaching identity", posts: [
+    { day: "Tuesday", type: "short", topic: "A student asked me last week: 'Is AI going to take my job?' Here's what I told them.", prompt: "Voice note: Recall the actual conversation and what you said." },
+    { day: "Friday", type: "short", topic: "The moment I knew traditional business education wasn't keeping up with AI", prompt: "Voice note: A specific classroom or mentoring moment that crystallised this for you." }
+  ]},
+  { theme: "Contrarian take", posts: [
+    { day: "Tuesday", type: "short", topic: "'Move fast and break things' is the worst advice for AI adoption in Indian SMBs", prompt: "Voice note: Why does speed without foundation fail specifically in the Indian SMB context?" },
+    { day: "Friday", type: "article", topic: "Data before AI: why Indian businesses need to fix their data foundation first", prompt: "What does bad data hygiene look like in practice? What happens when companies skip this step?" }
+  ]},
+  { theme: "Client story (anonymised)", posts: [
+    { day: "Wednesday", type: "short", topic: "A founder came to me wanting an AI chatbot. We built something entirely different — and it worked.", prompt: "Voice note: Walk through the diagnosis process. What did they think they needed vs what they actually needed?" },
+    { day: "Saturday", type: "short", topic: "The one KPI that tells you if an AI implementation is actually working", prompt: "Voice note: What metric do you use to evaluate success in your consulting engagements?" }
+  ]},
+  { theme: "India context", posts: [
+    { day: "Tuesday", type: "short", topic: "AI adoption in India vs the West — why the playbook is not the same", prompt: "Voice note: What structural differences (talent, infrastructure, culture) change how Indian SMBs should approach AI?" },
+    { day: "Friday", type: "article", topic: "The Indian SMB opportunity: why the next wave of AI winners will come from Tier 2 cities", prompt: "What are you seeing in your consulting work about AI appetite outside metros?" }
+  ]},
+  { theme: "Build community", posts: [
+    { day: "Tuesday", type: "short", topic: "I'm hosting a free 30-minute Q&A for SMB founders on AI strategy. Drop your biggest question below.", prompt: "Simple engagement post — invite questions, respond to every comment personally." },
+    { day: "Friday", type: "short", topic: "8 weeks of posting about AI for Indian businesses — here's what surprised me about the response", prompt: "Reflect on engagement, comments, DMs. What resonated? What will you write about next?" }
+  ]}
+];
+
+// State
+let state = loadState();
+
+function loadState() {
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved) return JSON.parse(saved);
+  } catch(e) {}
+  return { checked: {}, dates: {}, custom: [] };
+}
+
+function saveState() {
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch(e) {}
+  updateStats();
+}
+
+function postKey(w, p) { return `w${w}_p${p}`; }
+
+function updateStats() {
+  const totalPlan = weeks.reduce((a, w) => a + w.posts.length, 0);
+  const totalCustom = state.custom.length;
+  const total = totalPlan + totalCustom;
+  const donePlan = Object.values(state.checked).filter(Boolean).length;
+  const doneCustom = (state.custom || []).filter(c => c.checked).length;
+  const done = donePlan + doneCustom;
+  const remain = total - done;
+  const pct = total > 0 ? Math.round((done / total) * 100) : 0;
+  document.getElementById('stat-total').textContent = total;
+  document.getElementById('stat-done').textContent = done;
+  document.getElementById('stat-remain').textContent = remain;
+  document.getElementById('stat-pct').textContent = pct + '%';
+}
+
+function buildCalendar() {
+  const cal = document.getElementById('calendar');
+  cal.innerHTML = '';
+
+  weeks.forEach((week, wi) => {
+    const doneCount = week.posts.filter((_, pi) => state.checked[postKey(wi, pi)]).length;
+
+    const card = document.createElement('div');
+    card.className = 'week-card';
+
+    const header = document.createElement('div');
+    header.className = 'week-header';
+    header.innerHTML = `
+      <div>
+        <div class="week-label">Week ${wi + 1}</div>
+        <div class="week-theme">${week.theme}</div>
+        <div class="week-progress">${doneCount} of ${week.posts.length} published</div>
+      </div>
+      <span class="chevron ${wi === 0 ? 'open' : ''}" id="chev-${wi}">▼</span>
+    `;
+
+    const body = document.createElement('div');
+    body.className = 'week-body' + (wi === 0 ? ' open' : '');
+
+    week.posts.forEach((post, pi) => {
+      const key = postKey(wi, pi);
+      const isChecked = !!state.checked[key];
+      const savedDate = state.dates[key] || '';
+
+      const row = document.createElement('div');
+      row.className = 'post-row' + (isChecked ? ' completed' : '');
+      row.innerHTML = `
+        <div class="check-wrap">
+          <input type="checkbox" id="chk-${key}" ${isChecked ? 'checked' : ''} title="Mark as published" />
+        </div>
+        <div class="post-day">${post.day}</div>
+        <div><span class="badge badge-${post.type}">${post.type === 'short' ? 'Short post' : 'Article'}</span></div>
+        <div>
+          <div class="post-topic">${post.topic}</div>
+          <div class="post-prompt"><span class="prompt-label">AI prompt: </span>${post.prompt}</div>
+        </div>
+        <div class="date-input-wrap">
+          <div class="date-label">Date published</div>
+          <input type="date" id="date-${key}" value="${savedDate}" ${!isChecked ? 'disabled' : ''} />
+          ${isChecked && savedDate ? `<span class="published-badge">✓ Published</span>` : ''}
+        </div>
+      `;
+
+      const chk = row.querySelector(`#chk-${key}`);
+      const dateInp = row.querySelector(`#date-${key}`);
+
+      chk.addEventListener('change', () => {
+        state.checked[key] = chk.checked;
+        if (!chk.checked) { state.dates[key] = ''; }
+        saveState();
+        buildCalendar();
+        // re-open current week
+        setTimeout(() => {
+          const b = document.querySelector(`#week-body-${wi}`);
+          const h = document.querySelector(`#chev-${wi}`);
+          if (b) { b.classList.add('open'); }
+          if (h) { h.classList.add('open'); }
+        }, 10);
+      });
+
+      dateInp.addEventListener('change', () => {
+        state.dates[key] = dateInp.value;
+        saveState();
+      });
+
+      body.id = `week-body-${wi}`;
+      body.appendChild(row);
+    });
+
+    header.addEventListener('click', () => {
+      const isOpen = body.classList.contains('open');
+      body.classList.toggle('open', !isOpen);
+      document.getElementById(`chev-${wi}`).classList.toggle('open', !isOpen);
+    });
+
+    card.appendChild(header);
+    card.appendChild(body);
+    cal.appendChild(card);
+  });
+}
+
+function buildCustomList() {
+  const list = document.getElementById('custom-list');
+  if (!state.custom || state.custom.length === 0) {
+    list.innerHTML = '<div class="empty-custom">No additional posts yet.</div>';
+    return;
+  }
+  list.innerHTML = '';
+  state.custom.forEach((post, i) => {
+    const row = document.createElement('div');
+    row.className = 'custom-post-row' + (post.checked ? ' completed' : '');
+    row.innerHTML = `
+      <div class="check-wrap">
+        <input type="checkbox" id="cchk-${i}" ${post.checked ? 'checked' : ''} title="Mark as published" />
+      </div>
+      <div>
+        <div class="post-topic">${post.topic}</div>
+        ${post.prompt ? `<div class="post-prompt">${post.prompt}</div>` : ''}
+        ${post.day ? `<div class="post-day" style="margin-top:4px;font-size:12px;">${post.day}</div>` : ''}
+      </div>
+      <div><span class="badge badge-custom">${post.type === 'article' ? 'Article' : 'Short post'}</span></div>
+      <div class="date-input-wrap">
+        <div class="date-label">Date published</div>
+        <input type="date" id="cdate-${i}" value="${post.date || ''}" ${!post.checked ? 'disabled' : ''} />
+        ${post.checked && post.date ? `<span class="published-badge">✓ Published</span>` : ''}
+      </div>
+      <button class="btn-delete" onclick="deleteCustom(${i})" title="Remove">✕</button>
+    `;
+
+    const chk = row.querySelector(`#cchk-${i}`);
+    const dateInp = row.querySelector(`#cdate-${i}`);
+
+    chk.addEventListener('change', () => {
+      state.custom[i].checked = chk.checked;
+      if (!chk.checked) state.custom[i].date = '';
+      saveState();
+      buildCustomList();
+    });
+
+    dateInp.addEventListener('change', () => {
+      state.custom[i].date = dateInp.value;
+      saveState();
+    });
+
+    list.appendChild(row);
+  });
+}
+
+function addCustomPost() {
+  const topic = document.getElementById('cf-topic').value.trim();
+  if (!topic) { document.getElementById('cf-topic').focus(); return; }
+  const type = document.getElementById('cf-type').value;
+  const day = document.getElementById('cf-day').value.trim();
+  const date = document.getElementById('cf-date').value;
+  const prompt = document.getElementById('cf-prompt').value.trim();
+
+  if (!state.custom) state.custom = [];
+  state.custom.push({ topic, type, day, date, prompt, checked: !!date });
+  saveState();
+
+  document.getElementById('cf-topic').value = '';
+  document.getElementById('cf-day').value = '';
+  document.getElementById('cf-date').value = '';
+  document.getElementById('cf-prompt').value = '';
+  document.getElementById('cf-type').value = 'short';
+
+  buildCustomList();
+}
+
+function deleteCustom(i) {
+  state.custom.splice(i, 1);
+  saveState();
+  buildCustomList();
+}
+
+// Init
+buildCalendar();
+buildCustomList();
+updateStats();
+</script>
+</body>
+</html>

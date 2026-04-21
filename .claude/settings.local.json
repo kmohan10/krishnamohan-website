@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git init *)",
+      "Bash(git remote *)",
+      "Bash(git fetch *)",
+      "Bash(git checkout *)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git push *)",
+      "Bash(git pull *)",
+      "Bash(powershell -Command \"Get-Item 'D:/Krishna/LinkedIN Branding Course/KM_Website/index.html', 'D:/Krishna/LinkedIN Branding Course/KM_Website/index.html.html' | Select-Object Name, LastWriteTime, Length\")",
+      "Bash(git -C \"d:/Krishna/LinkedIN Branding Course/KM_Website\" add index.html)",
+      "Bash(echo \"EXIT:$?\")"
+    ]
+  }
+}

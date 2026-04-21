@@ -31,14 +31,15 @@
             --navy-light: #2A4A6B;
             --amber: #D4922A;
             --amber-light: #F0B855;
-            --amber-glow: rgba(212, 146, 42, 0.10);
+            --gold: #FFD700;
+            --amber-glow: rgba(212, 146, 42, 0.15);
             --cream: #F5F0E8;
             --cream-dark: #E8E0D0;
             --white: #FFFFFF;
-            --text-body: #4A5568;
-            --text-muted: #6B7A8A;
-            --border-dark: rgba(245, 240, 232, 0.08);
-            --muted-dark: rgba(245, 240, 232, 0.45);
+            --text-body: #E2E8F0;
+            --text-muted: #94A3B8;
+            --border-dark: rgba(245, 240, 232, 0.1);
+            --muted-dark: rgba(245, 240, 232, 0.7);
         }
 
         html {
@@ -46,8 +47,8 @@
         }
 
         body {
-            background: var(--cream);
-            color: var(--navy);
+            background: var(--navy);
+            color: var(--white);
             font-family: 'DM Sans', sans-serif;
             font-weight: 300;
             line-height: 1.8;
@@ -62,9 +63,9 @@
             right: 0;
             z-index: 100;
             height: 72px;
-            background: rgba(245, 240, 232, 0.92);
+            background: rgba(13, 27, 42, 0.95);
             backdrop-filter: blur(16px);
-            border-bottom: 1px solid var(--cream-dark);
+            border-bottom: 1px solid var(--border-dark);
             padding: 0 72px;
             display: flex;
             justify-content: space-between;
@@ -82,7 +83,7 @@
             font-family: 'Cormorant Garamond', serif;
             font-size: 18px;
             font-weight: 600;
-            color: var(--navy);
+            color: var(--white);
             letter-spacing: 0.5px;
             line-height: 1;
         }
@@ -105,18 +106,20 @@
         }
 
         .nav-links a {
-            color: var(--text-muted);
+            color: var(--white);
+            opacity: 0.7;
             text-decoration: none;
             font-family: 'DM Sans', sans-serif;
             font-size: 12px;
             font-weight: 400;
             letter-spacing: 1.5px;
             text-transform: uppercase;
-            transition: color 0.2s;
+            transition: all 0.2s;
         }
 
         .nav-links a:hover {
-            color: var(--amber);
+            color: var(--white);
+            opacity: 1;
         }
 
         .nav-cta {
@@ -146,8 +149,8 @@
             font-family: 'Cormorant Garamond', serif;
             font-weight: 700;
             font-size: clamp(60px, 10vw, 140px);
-            color: var(--navy);
-            opacity: 0.04;
+            color: var(--white);
+            opacity: 0.02;
             letter-spacing: -2px;
             white-space: nowrap;
             pointer-events: none;
@@ -197,7 +200,7 @@
             font-size: clamp(2.4rem, 5.5vw, 3.8rem);
             font-weight: 700;
             line-height: 1.1;
-            color: var(--navy);
+            color: var(--white);
             margin-bottom: 1.5rem;
             letter-spacing: -0.02em;
             position: relative;
@@ -251,11 +254,11 @@
             font-family: 'Cormorant Garamond', serif;
             font-size: 1.2rem;
             font-weight: 400;
-            color: var(--navy);
+            color: var(--white);
             line-height: 1.85;
             margin-bottom: 3rem;
             padding-bottom: 3rem;
-            border-bottom: 1px solid var(--cream-dark);
+            border-bottom: 1px solid var(--border-dark);
         }
 
         /* ── SECTIONS ── */
@@ -269,7 +272,7 @@
             gap: 1.25rem;
             margin-bottom: 1.5rem;
             padding-bottom: 1rem;
-            border-bottom: 1px solid var(--cream-dark);
+            border-bottom: 1px solid var(--border-dark);
         }
 
         .section-num {
@@ -286,7 +289,7 @@
             font-family: 'Cormorant Garamond', serif;
             font-size: 1.55rem;
             font-weight: 600;
-            color: var(--navy);
+            color: var(--white);
             line-height: 1.25;
         }
 
@@ -299,6 +302,11 @@
             line-height: 1.8;
         }
 
+        .article-body strong {
+            color: var(--gold);
+            font-weight: 700;
+        }
+
         /* ── CALLOUT ── */
         .callout {
             border-left: 3px solid var(--amber);
@@ -307,7 +315,7 @@
             font-family: 'Cormorant Garamond', serif;
             font-style: italic;
             font-size: 1.2rem;
-            color: var(--navy);
+            color: var(--white);
             line-height: 1.65;
             background: var(--amber-glow);
             border-radius: 0 4px 4px 0;
@@ -315,8 +323,8 @@
 
         /* ── SOLUTION BLOCK ── */
         .solution {
-            background: var(--white);
-            border: 1px solid var(--cream-dark);
+            background: var(--navy-mid);
+            border: 1px solid var(--border-dark);
             border-left: 3px solid var(--amber);
             border-radius: 0 6px 6px 0;
             padding: 1.5rem 1.75rem;
@@ -374,7 +382,7 @@
             font-family: 'Cormorant Garamond', serif;
             font-size: 1.5rem;
             font-weight: 600;
-            color: var(--cream);
+            color: var(--white);
             margin-bottom: 1.5rem;
             padding-bottom: 1rem;
             border-bottom: 1px solid var(--border-dark);
@@ -476,7 +484,7 @@
             font-family: 'Cormorant Garamond', serif;
             font-size: 16px;
             font-weight: 600;
-            color: var(--cream);
+            color: var(--white);
         }
 
         .footer-copy {
@@ -661,7 +669,7 @@
                     <li>Does failure here materially hurt customers or revenue?</li>
                     <li>Is there enough complexity that the team will genuinely learn?</li>
                 </ul>
-                <p>If the first answer is <strong style="color: var(--amber);">no</strong> and the second is <strong style="color: var(--amber);">yes</strong>, you have found your starting point.</p>
+                <p>If the first answer is <strong>no</strong> and the second is <strong>yes</strong>, you have found your starting point.</p>
             </div>
         </div>
 

@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AI Readiness Checklist — Indian SMBs</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -499,21 +500,28 @@
     border: 1px solid var(--border-strong);
     background: var(--surface2);
     font-family: var(--sans);
-    font-size: 13px;
+    font-size: 16px;
     font-weight: 500;
-    color: var(--text-secondary);
+    color: var(--text-primary);
     cursor: pointer;
     transition: all 0.15s;
-    margin-top: 8px;
   }
 
   .restart-btn:hover { color: var(--text-primary); border-color: var(--border-strong); background: var(--surface); }
+
+  .action-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 24px;
+  }
 
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(8px); }
     to   { opacity: 1; transform: translateY(0); }
   }
 </style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 </head>
 <body>
 <div class="shell">
@@ -801,7 +809,10 @@ function renderResult() {
         }).join('')}
       </div>
 
-      <button class="restart-btn" onclick="restart()">↺ Retake the checklist</button>
+      <div class="action-row" data-html2canvas-ignore="true">
+        <button class="restart-btn" onclick="restart()">↺ Retake</button>
+        <button class="restart-btn" id="pdf-btn" onclick="downloadPDF()" style="background: var(--text-primary); color: var(--bg); border-color: var(--text-primary);">📥 Download PDF</button>
+      </div>
     </div>`;
 }
 
@@ -810,6 +821,25 @@ function restart() {
   history = [];
   sectionScores = { s1: 0, s2: 0, s3: 0, s4: 0 };
   render();
+}
+
+function downloadPDF() {
+  const element = document.querySelector('.shell');
+  const btn = document.getElementById('pdf-btn');
+  const oldText = btn.innerHTML;
+  btn.innerHTML = '⏳ Generating...';
+  
+  const opt = {
+    margin:       [0.4, 0.4, 0.4, 0.4],
+    filename:     'AI-Readiness-Report.pdf',
+    image:        { type: 'jpeg', quality: 0.98 },
+    html2canvas:  { scale: 2, backgroundColor: '#0D1B2A', windowWidth: 800 },
+    jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+  };
+  
+  html2pdf().set(opt).from(element).save().then(() => {
+    btn.innerHTML = oldText;
+  });
 }
 
 render();

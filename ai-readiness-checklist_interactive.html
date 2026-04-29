@@ -12,35 +12,35 @@
     --bg: #0D1B2A;
     --surface: #162536;
     --surface2: #1F3448;
-    --border: rgba(245, 240, 232, 0.09);
-    --border-strong: rgba(245, 240, 232, 0.2);
-    --text-primary: #F5F0E8;
-    --text-secondary: rgba(245, 240, 232, 0.7);
-    --text-tertiary: #6B7A8A;
-    --accent: #D4922A;
-    --accent-dim: rgba(212, 146, 42, 0.12);
-    --green: #3FB950;
-    --green-bg: rgba(63,185,80,0.1);
-    --green-border: rgba(63,185,80,0.3);
-    --red: #F85149;
-    --red-bg: rgba(248,81,73,0.1);
-    --red-border: rgba(248,81,73,0.3);
-    --yellow: #D4922A;
-    --yellow-bg: rgba(212, 146, 42, 0.1);
-    --purple: #BC8CFF;
-    --purple-bg: rgba(188,140,255,0.1);
+    --border: rgba(245, 240, 232, 0.15);
+    --border-strong: rgba(245, 240, 232, 0.3);
+    --text-primary: #FFFFFF;
+    --text-secondary: #E8E0D0;
+    --text-tertiary: #A0ABC0;
+    --accent: #F0B855;
+    --accent-dim: rgba(240, 184, 85, 0.2);
+    --green: #4ADE80;
+    --green-bg: rgba(74, 222, 128, 0.15);
+    --green-border: rgba(74, 222, 128, 0.4);
+    --red: #F87171;
+    --red-bg: rgba(248, 113, 113, 0.15);
+    --red-border: rgba(248, 113, 113, 0.4);
+    --yellow: #F0B855;
+    --yellow-bg: rgba(240, 184, 85, 0.15);
+    --purple: #C084FC;
+    --purple-bg: rgba(192, 132, 252, 0.15);
     --sans: 'DM Sans', sans-serif;
     --mono: 'JetBrains Mono', monospace;
 
     /* Section colors */
-    --s1: #D4922A;
-    --s1-bg: rgba(212, 146, 42, 0.1);
-    --s2: #F0B855;
-    --s2-bg: rgba(240, 184, 85, 0.1);
-    --s3: #E8E0D0;
-    --s3-bg: rgba(232, 224, 208, 0.1);
-    --s4: #94A3B8;
-    --s4-bg: rgba(148, 163, 184, 0.1);
+    --s1: #F0B855;
+    --s1-bg: rgba(240, 184, 85, 0.15);
+    --s2: #FCD34D;
+    --s2-bg: rgba(252, 211, 77, 0.15);
+    --s3: #FFFFFF;
+    --s3-bg: rgba(255, 255, 255, 0.15);
+    --s4: #CBD5E1;
+    --s4-bg: rgba(203, 213, 225, 0.15);
   }
 
   html, body {
@@ -84,17 +84,17 @@
 
   .header-title {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 36px;
+    font-size: 42px;
     font-weight: 700;
     line-height: 1.1;
     color: var(--text-primary);
-    margin-bottom: 8px;
+    margin-bottom: 12px;
   }
 
   .header-title span { color: var(--accent); }
 
   .header-sub {
-    font-size: 14px;
+    font-size: 16px;
     color: var(--text-secondary);
     line-height: 1.6;
   }
@@ -109,12 +109,12 @@
 
   .spill {
     font-family: var(--mono);
-    font-size: 10px;
+    font-size: 12px;
     letter-spacing: 0.06em;
-    padding: 4px 10px;
+    padding: 6px 12px;
     border-radius: 99px;
     border: 1px solid;
-    opacity: 0.45;
+    opacity: 0.6;
     transition: opacity 0.3s;
   }
 
@@ -168,30 +168,30 @@
   .section-meta { flex: 1; }
 
   .section-name {
-    font-size: 13px;
+    font-size: 16px;
     font-weight: 600;
   }
 
   .section-desc {
-    font-size: 12px;
-    margin-top: 2px;
-    opacity: 0.7;
+    font-size: 14px;
+    margin-top: 4px;
+    opacity: 0.85;
   }
 
   .section-score-badge {
     font-family: var(--mono);
-    font-size: 11px;
-    padding: 3px 10px;
+    font-size: 12px;
+    padding: 4px 12px;
     border-radius: 99px;
     border: 1px solid;
     flex-shrink: 0;
   }
 
   /* Section color variants */
-  .sh-s1 { background: var(--s1-bg); border-color: rgba(212, 146, 42, 0.25); color: var(--s1); }
-  .sh-s2 { background: var(--s2-bg); border-color: rgba(240, 184, 85, 0.25); color: var(--s2); }
-  .sh-s3 { background: var(--s3-bg); border-color: rgba(232, 224, 208, 0.25); color: var(--s3); }
-  .sh-s4 { background: var(--s4-bg); border-color: rgba(148, 163, 184, 0.25); color: var(--s4); }
+  .sh-s1 { background: var(--s1-bg); border-color: rgba(240, 184, 85, 0.3); color: var(--s1); }
+  .sh-s2 { background: var(--s2-bg); border-color: rgba(252, 211, 77, 0.3); color: var(--s2); }
+  .sh-s3 { background: var(--s3-bg); border-color: rgba(255, 255, 255, 0.3); color: var(--s3); }
+  .sh-s4 { background: var(--s4-bg); border-color: rgba(203, 213, 225, 0.3); color: var(--s4); }
 
   /* ── Question card ── */
   .q-card {
@@ -205,19 +205,19 @@
 
   .q-num {
     font-family: var(--mono);
-    font-size: 10px;
+    font-size: 12px;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--text-tertiary);
-    margin-bottom: 10px;
+    margin-bottom: 12px;
   }
 
   .q-text {
-    font-size: 16px;
+    font-size: 20px;
     font-weight: 500;
     line-height: 1.5;
     color: var(--text-primary);
-    margin-bottom: 20px;
+    margin-bottom: 24px;
   }
 
   .btn-row {
@@ -229,17 +229,17 @@
   .btn {
     display: flex;
     align-items: center;
-    gap: 8px;
-    padding: 11px 14px;
+    gap: 10px;
+    padding: 14px 18px;
     border-radius: 8px;
     border: 1px solid var(--border);
     background: var(--surface2);
     font-family: var(--sans);
-    font-size: 13px;
+    font-size: 16px;
     font-weight: 500;
     cursor: pointer;
     transition: all 0.15s;
-    color: var(--text-secondary);
+    color: var(--text-primary);
     line-height: 1.3;
     text-align: left;
   }
@@ -251,14 +251,14 @@
     background: var(--green-bg);
     color: var(--green);
   }
-  .btn-yes:hover { background: rgba(63,185,80,0.16); color: var(--green); }
+  .btn-yes:hover { background: rgba(74, 222, 128, 0.25); color: var(--green); }
 
   .btn-no {
     border-color: var(--red-border);
     background: var(--red-bg);
     color: var(--red);
   }
-  .btn-no:hover { background: rgba(248,81,73,0.16); color: var(--red); }
+  .btn-no:hover { background: rgba(248, 113, 113, 0.25); color: var(--red); }
 
   .btn-dot {
     width: 7px;
@@ -308,7 +308,7 @@
 
   .history-label {
     font-family: var(--mono);
-    font-size: 10px;
+    font-size: 11px;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--text-tertiary);
@@ -321,7 +321,7 @@
     gap: 8px;
     padding: 7px 0;
     border-top: 1px solid var(--border);
-    font-size: 12.5px;
+    font-size: 14px;
     color: var(--text-secondary);
     line-height: 1.4;
   }
@@ -529,9 +529,9 @@
 const sections = [
   {
     id: 's1', label: 'Data Foundation', icon: '🗄️',
-    color: '#D4922A', bg: 'rgba(212, 146, 42, 0.1)', border: 'rgba(212, 146, 42, 0.25)',
+    color: '#F0B855', bg: 'rgba(240, 184, 85, 0.15)', border: 'rgba(240, 184, 85, 0.3)',
     pillClass: 'spill-s1', headerClass: 'sh-s1',
-    barColor: '#D4922A',
+    barColor: '#F0B855',
     desc: 'You cannot build AI on bad data.',
     max: 5,
     questions: [
@@ -544,9 +544,9 @@ const sections = [
   },
   {
     id: 's2', label: 'Process Clarity', icon: '⚙️',
-    color: '#F0B855', bg: 'rgba(240, 184, 85, 0.1)', border: 'rgba(240, 184, 85, 0.25)',
+    color: '#FCD34D', bg: 'rgba(252, 211, 77, 0.15)', border: 'rgba(252, 211, 77, 0.3)',
     pillClass: 'spill-s2', headerClass: 'sh-s2',
-    barColor: '#F0B855',
+    barColor: '#FCD34D',
     desc: 'AI will automate the chaos if processes are undefined.',
     max: 4,
     questions: [
@@ -558,9 +558,9 @@ const sections = [
   },
   {
     id: 's3', label: 'Leadership Readiness', icon: '👤',
-    color: '#E8E0D0', bg: 'rgba(232, 224, 208, 0.1)', border: 'rgba(232, 224, 208, 0.25)',
+    color: '#FFFFFF', bg: 'rgba(255, 255, 255, 0.15)', border: 'rgba(255, 255, 255, 0.3)',
     pillClass: 'spill-s3', headerClass: 'sh-s3',
-    barColor: '#E8E0D0',
+    barColor: '#FFFFFF',
     desc: 'AI adoption fails without leadership buy-in.',
     max: 3,
     questions: [
@@ -571,9 +571,9 @@ const sections = [
   },
   {
     id: 's4', label: 'Team & Culture', icon: '🤝',
-    color: '#94A3B8', bg: 'rgba(148, 163, 184, 0.1)', border: 'rgba(148, 163, 184, 0.25)',
+    color: '#CBD5E1', bg: 'rgba(203, 213, 225, 0.15)', border: 'rgba(203, 213, 225, 0.3)',
     pillClass: 'spill-s4', headerClass: 'sh-s4',
-    barColor: '#94A3B8',
+    barColor: '#CBD5E1',
     desc: 'The biggest barrier to AI isn\'t technology — it\'s people.',
     max: 3,
     questions: [
@@ -609,7 +609,7 @@ function sectionComplete(sid) {
 
 function renderProgress() {
   const pct = getPct();
-  const color = current < total ? getProgressColor() : '#3FB950';
+  const color = current < total ? getProgressColor() : '#4ADE80';
   return `
     <div class="progress-wrap">
       <div class="progress-meta">
@@ -712,28 +712,28 @@ function getVerdict(score) {
   if (score >= 13) return {
     range: '13–15', label: 'AI Ready',
     icon: '🏆',
-    color: '#3FB950', bg: 'rgba(63,185,80,0.08)', border: 'rgba(63,185,80,0.25)',
+    color: '#4ADE80', bg: 'rgba(74, 222, 128, 0.15)', border: 'rgba(74, 222, 128, 0.4)',
     headline: 'Strong foundation. Time to move fast.',
     body: `You have solid data, clear processes, leadership alignment, and a willing team. Identify your first high-impact use case — whether it's customer service automation, demand forecasting, or lead scoring — and begin a focused pilot within the next 30 days. Don't wait for the perfect moment. You're ready.`
   };
   if (score >= 9) return {
     range: '9–12', label: 'Almost There',
     icon: '✅',
-    color: '#F0B855', bg: 'rgba(240, 184, 85, 0.1)', border: 'rgba(240, 184, 85, 0.25)',
+    color: '#FCD34D', bg: 'rgba(252, 211, 77, 0.15)', border: 'rgba(252, 211, 77, 0.3)',
     headline: 'A few gaps to close first.',
     body: `You're closer than you think, but a few weak spots — often in data consistency or process documentation — could undermine your AI investment. Spend the next 60–90 days tightening those gaps. Pick the section where you scored lowest and make it your priority. Then revisit this checklist before investing in any AI tool.`
   };
   if (score >= 5) return {
     range: '5–8', label: 'Foundation First',
     icon: '🔧',
-    color: '#D4922A', bg: 'rgba(212, 146, 42, 0.1)', border: 'rgba(212, 146, 42, 0.25)',
+    color: '#F0B855', bg: 'rgba(240, 184, 85, 0.15)', border: 'rgba(240, 184, 85, 0.3)',
     headline: 'Build your data and process foundation before considering AI tools.',
     body: `The good news: these are fixable problems. Start by centralising your data in one system, documenting your top three processes, and identifying one internal champion. These foundational steps typically take 3–6 months but will dramatically increase your AI ROI when the time comes.`
   };
   return {
     range: '0–4', label: 'Start Here',
     icon: '📋',
-    color: '#F85149', bg: 'rgba(248,81,73,0.1)', border: 'rgba(248,81,73,0.3)',
+    color: '#F87171', bg: 'rgba(248, 113, 113, 0.15)', border: 'rgba(248, 113, 113, 0.4)',
     headline: 'AI is premature. Focus on digitising your core operations first.',
     body: `Before AI, you need digital. Prioritise moving your key business data out of WhatsApp and paper files into structured systems — even a simple spreadsheet is a start. Set a goal to rescore yourself in 6 months. Every business starts somewhere, and this is yours.`
   };
@@ -749,7 +749,7 @@ function renderResult() {
       ${renderPills(null)}
       <div class="progress-wrap">
         <div class="progress-meta"><span>15 of 15 answered</span><span>100%</span></div>
-        <div class="progress-track"><div class="progress-fill" style="width:100%;background:#3FB950"></div></div>
+        <div class="progress-track"><div class="progress-fill" style="width:100%;background:#4ADE80"></div></div>
       </div>
 
       <div class="score-header">
@@ -786,7 +786,7 @@ function renderResult() {
           const qs = s.questions;
           const startIdx = allQ.findIndex(q => q.section.id === s.id);
           return `
-            <div class="log-section-header" style="color:${s.color};border-bottom-color:rgba(${s.id==='s1'?'212, 146, 42':s.id==='s2'?'240, 184, 85':s.id==='s3'?'232, 224, 208':'148, 163, 184'},0.2)">
+            <div class="log-section-header" style="color:${s.color};border-bottom-color:var(--border)">
               <span>${s.icon} ${s.label}</span>
               <span style="font-family:var(--mono);font-size:11px">${sectionScores[s.id]}/${s.max}</span>
             </div>

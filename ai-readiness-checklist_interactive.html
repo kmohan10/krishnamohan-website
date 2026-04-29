@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Readiness Checklist — Indian SMBs</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0D1B2A;
+    --surface: #162536;
+    --surface2: #1F3448;
+    --border: rgba(245, 240, 232, 0.09);
+    --border-strong: rgba(245, 240, 232, 0.2);
+    --text-primary: #F5F0E8;
+    --text-secondary: rgba(245, 240, 232, 0.7);
+    --text-tertiary: #6B7A8A;
+    --accent: #D4922A;
+    --accent-dim: rgba(212, 146, 42, 0.12);
+    --green: #3FB950;
+    --green-bg: rgba(63,185,80,0.1);
+    --green-border: rgba(63,185,80,0.3);
+    --red: #F85149;
+    --red-bg: rgba(248,81,73,0.1);
+    --red-border: rgba(248,81,73,0.3);
+    --yellow: #D4922A;
+    --yellow-bg: rgba(212, 146, 42, 0.1);
+    --purple: #BC8CFF;
+    --purple-bg: rgba(188,140,255,0.1);
+    --sans: 'DM Sans', sans-serif;
+    --mono: 'JetBrains Mono', monospace;
+
+    /* Section colors */
+    --s1: #D4922A;
+    --s1-bg: rgba(212, 146, 42, 0.1);
+    --s2: #F0B855;
+    --s2-bg: rgba(240, 184, 85, 0.1);
+    --s3: #E8E0D0;
+    --s3-bg: rgba(232, 224, 208, 0.1);
+    --s4: #94A3B8;
+    --s4-bg: rgba(148, 163, 184, 0.1);
+  }
+
+  html, body {
+    background: var(--bg);
+    font-family: var(--sans);
+    color: var(--text-primary);
+    -webkit-font-smoothing: antialiased;
+    min-height: 100%;
+  }
+
+  body {
+    display: flex;
+    justify-content: center;
+    padding: 48px 16px 80px;
+  }
+
+  .shell { width: 100%; max-width: 620px; }
+
+  /* ── Header ── */
+  .header { margin-bottom: 40px; }
+
+  .header-kicker {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+    margin-bottom: 14px;
+  }
+
+  .header-kicker::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 1px;
+    background: var(--text-tertiary);
+  }
+
+  .header-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+  }
+
+  .header-title span { color: var(--accent); }
+
+  .header-sub {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  /* ── Section pills ── */
+  .section-pills {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 32px;
+  }
+
+  .spill {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    padding: 4px 10px;
+    border-radius: 99px;
+    border: 1px solid;
+    opacity: 0.45;
+    transition: opacity 0.3s;
+  }
+
+  .spill.active { opacity: 1; }
+  .spill-s1 { color: var(--s1); border-color: var(--s1); background: var(--s1-bg); }
+  .spill-s2 { color: var(--s2); border-color: var(--s2); background: var(--s2-bg); }
+  .spill-s3 { color: var(--s3); border-color: var(--s3); background: var(--s3-bg); }
+  .spill-s4 { color: var(--s4); border-color: var(--s4); background: var(--s4-bg); }
+
+  /* ── Progress ── */
+  .progress-wrap { margin-bottom: 28px; }
+
+  .progress-meta {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-tertiary);
+  }
+
+  .progress-track {
+    height: 2px;
+    background: var(--border);
+    border-radius: 99px;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 100%;
+    border-radius: 99px;
+    transition: width 0.5s cubic-bezier(0.4,0,0.2,1), background 0.5s;
+  }
+
+  /* ── Section header ── */
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+    padding: 12px 16px;
+    border-radius: 8px;
+    border: 1px solid;
+  }
+
+  .section-icon {
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+
+  .section-meta { flex: 1; }
+
+  .section-name {
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  .section-desc {
+    font-size: 12px;
+    margin-top: 2px;
+    opacity: 0.7;
+  }
+
+  .section-score-badge {
+    font-family: var(--mono);
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 99px;
+    border: 1px solid;
+    flex-shrink: 0;
+  }
+
+  /* Section color variants */
+  .sh-s1 { background: var(--s1-bg); border-color: rgba(212, 146, 42, 0.25); color: var(--s1); }
+  .sh-s2 { background: var(--s2-bg); border-color: rgba(240, 184, 85, 0.25); color: var(--s2); }
+  .sh-s3 { background: var(--s3-bg); border-color: rgba(232, 224, 208, 0.25); color: var(--s3); }
+  .sh-s4 { background: var(--s4-bg); border-color: rgba(148, 163, 184, 0.25); color: var(--s4); }
+
+  /* ── Question card ── */
+  .q-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px 24px 20px;
+    margin-bottom: 14px;
+    animation: fadeUp 0.25s ease both;
+  }
+
+  .q-num {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+    margin-bottom: 10px;
+  }
+
+  .q-text {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.5;
+    color: var(--text-primary);
+    margin-bottom: 20px;
+  }
+
+  .btn-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 11px 14px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--surface2);
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.15s;
+    color: var(--text-secondary);
+    line-height: 1.3;
+    text-align: left;
+  }
+
+  .btn:hover { border-color: var(--border-strong); color: var(--text-primary); background: #21262D; }
+
+  .btn-yes {
+    border-color: var(--green-border);
+    background: var(--green-bg);
+    color: var(--green);
+  }
+  .btn-yes:hover { background: rgba(63,185,80,0.16); color: var(--green); }
+
+  .btn-no {
+    border-color: var(--red-border);
+    background: var(--red-bg);
+    color: var(--red);
+  }
+  .btn-no:hover { background: rgba(248,81,73,0.16); color: var(--red); }
+
+  .btn-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .btn-yes .btn-dot { background: var(--green); }
+  .btn-no .btn-dot { background: var(--red); }
+
+  /* ── Mini score track ── */
+  .mini-scores {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+  }
+
+  .mini-score {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--mono);
+    font-size: 11px;
+    padding: 5px 10px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text-tertiary);
+    transition: all 0.3s;
+  }
+
+  .mini-score.done { border-color: var(--border-strong); color: var(--text-secondary); }
+
+  .mini-score-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--border);
+    transition: background 0.3s;
+  }
+
+  .mini-score.done .mini-score-dot { background: var(--green); }
+
+  /* ── History ── */
+  .history { margin-top: 24px; }
+
+  .history-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+    margin-bottom: 8px;
+  }
+
+  .h-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 7px 0;
+    border-top: 1px solid var(--border);
+    font-size: 12.5px;
+    color: var(--text-secondary);
+    line-height: 1.4;
+  }
+
+  .badge {
+    font-family: var(--mono);
+    font-size: 9px;
+    font-weight: 500;
+    padding: 2px 7px;
+    border-radius: 99px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin-top: 2px;
+    letter-spacing: 0.04em;
+    border: 1px solid;
+  }
+
+  .badge-yes { color: var(--green); border-color: var(--green-border); background: var(--green-bg); }
+  .badge-no  { color: var(--red);   border-color: var(--red-border);   background: var(--red-bg); }
+
+  /* ── Results ── */
+  .result-wrap { animation: fadeUp 0.35s ease both; }
+
+  /* Score dashboard */
+  .score-header {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 28px;
+    margin-bottom: 16px;
+    text-align: center;
+  }
+
+  .score-total-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+    margin-bottom: 12px;
+  }
+
+  .score-big {
+    font-size: 64px;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .score-denom {
+    font-size: 24px;
+    color: var(--text-tertiary);
+    font-weight: 400;
+  }
+
+  .score-band-name {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+
+  .score-band-sub {
+    font-size: 13px;
+    color: var(--text-secondary);
+  }
+
+  /* Section breakdown */
+  .breakdown {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+
+  .breakdown-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+  }
+
+  .bc-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+  .bc-name {
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  .bc-score {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 500;
+  }
+
+  .bc-bar-track {
+    height: 3px;
+    border-radius: 99px;
+    background: var(--border);
+    overflow: hidden;
+  }
+
+  .bc-bar-fill {
+    height: 100%;
+    border-radius: 99px;
+    transition: width 0.6s ease;
+  }
+
+  /* Verdict card */
+  .verdict-card {
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 16px;
+    border: 1px solid;
+  }
+
+  .verdict-icon { font-size: 28px; margin-bottom: 10px; }
+
+  .verdict-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  .verdict-body {
+    font-size: 13.5px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+
+  /* Answer log */
+  .answer-log {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 16px;
+  }
+
+  .log-section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  .log-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 9px 16px;
+    border-bottom: 1px solid var(--border);
+    font-size: 12.5px;
+    color: var(--text-secondary);
+    line-height: 1.4;
+  }
+
+  .log-row:last-child { border-bottom: none; }
+
+  .restart-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid var(--border-strong);
+    background: var(--surface2);
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.15s;
+    margin-top: 8px;
+  }
+
+  .restart-btn:hover { color: var(--text-primary); border-color: var(--border-strong); background: var(--surface); }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+</style>
+</head>
+<body>
+<div class="shell">
+  <div class="header">
+    <div class="header-kicker">AI Readiness Checklist</div>
+    <div class="header-title">Is your SMB ready for <span>AI?</span></div>
+    <div class="header-sub">15 questions across 4 sections. One point per honest Yes. Your score tells you exactly where to start — and what to fix first.</div>
+  </div>
+  <div id="app"></div>
+</div>
+
+<script>
+const sections = [
+  {
+    id: 's1', label: 'Data Foundation', icon: '🗄️',
+    color: '#D4922A', bg: 'rgba(212, 146, 42, 0.1)', border: 'rgba(212, 146, 42, 0.25)',
+    pillClass: 'spill-s1', headerClass: 'sh-s1',
+    barColor: '#D4922A',
+    desc: 'You cannot build AI on bad data.',
+    max: 5,
+    questions: [
+      { n:1,  q:'Do you collect and store business data consistently — sales, operations, customer interactions — in a structured format (spreadsheet or software)?' },
+      { n:2,  q:'Is your data centralised in one place, rather than scattered across WhatsApp, email, and individual files?' },
+      { n:3,  q:'Do you trust your data enough to make business decisions from it without manually verifying it first?' },
+      { n:4,  q:'Do you have at least 12 months of historical data in your core business area (sales, inventory, customers)?' },
+      { n:5,  q:'Does your team follow consistent data entry practices — rather than each person doing it differently?' },
+    ]
+  },
+  {
+    id: 's2', label: 'Process Clarity', icon: '⚙️',
+    color: '#F0B855', bg: 'rgba(240, 184, 85, 0.1)', border: 'rgba(240, 184, 85, 0.25)',
+    pillClass: 'spill-s2', headerClass: 'sh-s2',
+    barColor: '#F0B855',
+    desc: 'AI will automate the chaos if processes are undefined.',
+    max: 4,
+    questions: [
+      { n:6,  q:'Can you clearly describe your top 3 business processes in writing — step by step?' },
+      { n:7,  q:'Do you know exactly where your biggest operational bottleneck is right now?' },
+      { n:8,  q:'Have you identified at least one repetitive task your team does daily that consumes significant time?' },
+      { n:9,  q:'Do your employees follow documented processes, rather than each person relying on personal judgment?' },
+    ]
+  },
+  {
+    id: 's3', label: 'Leadership Readiness', icon: '👤',
+    color: '#E8E0D0', bg: 'rgba(232, 224, 208, 0.1)', border: 'rgba(232, 224, 208, 0.25)',
+    pillClass: 'spill-s3', headerClass: 'sh-s3',
+    barColor: '#E8E0D0',
+    desc: 'AI adoption fails without leadership buy-in.',
+    max: 3,
+    questions: [
+      { n:10, q:'Are you willing to invest 3–6 months before expecting measurable ROI from an AI initiative?' },
+      { n:11, q:'Does your leadership team have a basic understanding of what AI can and cannot do?' },
+      { n:12, q:'Do you have a budget allocated — even a small one — for technology and training this year?' },
+    ]
+  },
+  {
+    id: 's4', label: 'Team & Culture', icon: '🤝',
+    color: '#94A3B8', bg: 'rgba(148, 163, 184, 0.1)', border: 'rgba(148, 163, 184, 0.25)',
+    pillClass: 'spill-s4', headerClass: 'sh-s4',
+    barColor: '#94A3B8',
+    desc: 'The biggest barrier to AI isn\'t technology — it\'s people.',
+    max: 3,
+    questions: [
+      { n:13, q:'Is your team generally open to learning new tools and changing how they work?' },
+      { n:14, q:'Do you have at least one person internally who is technically curious and could champion an AI initiative?' },
+      { n:15, q:'Have you communicated to your team that AI is about augmenting their work — not replacing them?' },
+    ]
+  }
+];
+
+const allQ = sections.flatMap(s => s.questions.map(q => ({ ...q, section: s })));
+const total = allQ.length;
+
+let current = 0;
+let history = [];
+let sectionScores = { s1: 0, s2: 0, s3: 0, s4: 0 };
+
+function getPct() { return Math.round((current / total) * 100); }
+
+function getProgressColor() {
+  const s = allQ[Math.min(current, total-1)].section;
+  return s.barColor;
+}
+
+function currentSection() { return allQ[Math.min(current, total-1)].section; }
+
+function sectionComplete(sid) {
+  const sec = sections.find(s => s.id === sid);
+  const qs = sec.questions;
+  const firstIdx = allQ.findIndex(q => q.section.id === sid);
+  return current > firstIdx + qs.length - 1;
+}
+
+function renderProgress() {
+  const pct = getPct();
+  const color = current < total ? getProgressColor() : '#3FB950';
+  return `
+    <div class="progress-wrap">
+      <div class="progress-meta">
+        <span>${current} of ${total} answered</span>
+        <span>${pct}%</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" style="width:${pct}%;background:${color}"></div>
+      </div>
+    </div>`;
+}
+
+function renderPills(activeSid) {
+  return `<div class="section-pills">
+    ${sections.map(s => {
+      const done = sectionComplete(s.id);
+      const active = s.id === activeSid;
+      return `<span class="spill ${s.pillClass} ${active ? 'active' : done ? 'active' : ''}">${done ? '✓ ' : ''}${s.label}</span>`;
+    }).join('')}
+  </div>`;
+}
+
+function renderMiniScores() {
+  const done = sections.filter(s => sectionComplete(s.id));
+  if (!done.length) return '';
+  return `<div class="mini-scores">
+    ${done.map(s => `
+      <div class="mini-score done">
+        <div class="mini-score-dot"></div>
+        <span style="color:${s.color}">${s.label.split(' ')[0]}</span>
+        <span>${sectionScores[s.id]}/${s.max}</span>
+      </div>`).join('')}
+  </div>`;
+}
+
+function renderHistory() {
+  if (!history.length) return '';
+  const items = [...history].reverse().slice(0, 4);
+  return `<div class="history">
+    <div class="history-label">Recent answers</div>
+    ${items.map(h => `
+      <div class="h-item">
+        <span class="badge ${h.yes ? 'badge-yes' : 'badge-no'}">${h.yes ? 'YES' : 'NO'}</span>
+        <span>${allQ[h.index].q}</span>
+      </div>`).join('')}
+  </div>`;
+}
+
+function render() {
+  const app = document.getElementById('app');
+  const item = allQ[current];
+  const sec = item.section;
+  const prevSec = current > 0 ? allQ[current-1].section : null;
+  const showSecHeader = !prevSec || prevSec.id !== sec.id;
+  const secQ = sec.questions;
+  const secIdx = secQ.findIndex(q => q.n === item.n);
+
+  app.innerHTML = `
+    ${renderPills(sec.id)}
+    ${renderProgress()}
+    ${renderMiniScores()}
+    <div class="fade-in">
+      ${showSecHeader ? `
+        <div class="section-header ${sec.headerClass}">
+          <span class="section-icon">${sec.icon}</span>
+          <div class="section-meta">
+            <div class="section-name">Section ${sections.indexOf(sec)+1} of 4 — ${sec.label}</div>
+            <div class="section-desc">${sec.desc}</div>
+          </div>
+          <span class="section-score-badge" style="color:${sec.color};border-color:${sec.border};background:${sec.bg}">
+            0–${sec.max} pts
+          </span>
+        </div>` : ''}
+      <div class="q-card">
+        <div class="q-num">Question ${item.n} of ${total} &nbsp;·&nbsp; ${sec.label} ${secIdx+1}/${secQ.length}</div>
+        <div class="q-text">${item.q}</div>
+        <div class="btn-row">
+          <button class="btn btn-no" onclick="answer(false)">
+            <span class="btn-dot"></span>No
+          </button>
+          <button class="btn btn-yes" onclick="answer(true)">
+            <span class="btn-dot"></span>Yes — 1 point
+          </button>
+        </div>
+      </div>
+    </div>
+    ${renderHistory()}`;
+}
+
+function answer(yes) {
+  const item = allQ[current];
+  if (yes) sectionScores[item.section.id]++;
+  history.push({ index: current, yes });
+  current++;
+  if (current >= total) { renderResult(); return; }
+  render();
+}
+
+function getVerdict(score) {
+  if (score >= 13) return {
+    range: '13–15', label: 'AI Ready',
+    icon: '🏆',
+    color: '#3FB950', bg: 'rgba(63,185,80,0.08)', border: 'rgba(63,185,80,0.25)',
+    headline: 'Strong foundation. Time to move fast.',
+    body: `You have solid data, clear processes, leadership alignment, and a willing team. Identify your first high-impact use case — whether it's customer service automation, demand forecasting, or lead scoring — and begin a focused pilot within the next 30 days. Don't wait for the perfect moment. You're ready.`
+  };
+  if (score >= 9) return {
+    range: '9–12', label: 'Almost There',
+    icon: '✅',
+    color: '#F0B855', bg: 'rgba(240, 184, 85, 0.1)', border: 'rgba(240, 184, 85, 0.25)',
+    headline: 'A few gaps to close first.',
+    body: `You're closer than you think, but a few weak spots — often in data consistency or process documentation — could undermine your AI investment. Spend the next 60–90 days tightening those gaps. Pick the section where you scored lowest and make it your priority. Then revisit this checklist before investing in any AI tool.`
+  };
+  if (score >= 5) return {
+    range: '5–8', label: 'Foundation First',
+    icon: '🔧',
+    color: '#D4922A', bg: 'rgba(212, 146, 42, 0.1)', border: 'rgba(212, 146, 42, 0.25)',
+    headline: 'Build your data and process foundation before considering AI tools.',
+    body: `The good news: these are fixable problems. Start by centralising your data in one system, documenting your top three processes, and identifying one internal champion. These foundational steps typically take 3–6 months but will dramatically increase your AI ROI when the time comes.`
+  };
+  return {
+    range: '0–4', label: 'Start Here',
+    icon: '📋',
+    color: '#F85149', bg: 'rgba(248,81,73,0.1)', border: 'rgba(248,81,73,0.3)',
+    headline: 'AI is premature. Focus on digitising your core operations first.',
+    body: `Before AI, you need digital. Prioritise moving your key business data out of WhatsApp and paper files into structured systems — even a simple spreadsheet is a start. Set a goal to rescore yourself in 6 months. Every business starts somewhere, and this is yours.`
+  };
+}
+
+function renderResult() {
+  const app = document.getElementById('app');
+  const totalScore = Object.values(sectionScores).reduce((a,b) => a+b, 0);
+  const v = getVerdict(totalScore);
+
+  app.innerHTML = `
+    <div class="result-wrap">
+      ${renderPills(null)}
+      <div class="progress-wrap">
+        <div class="progress-meta"><span>15 of 15 answered</span><span>100%</span></div>
+        <div class="progress-track"><div class="progress-fill" style="width:100%;background:#3FB950"></div></div>
+      </div>
+
+      <div class="score-header">
+        <div class="score-total-label">Your AI Readiness Score</div>
+        <div class="score-big" style="color:${v.color}">${totalScore}<span class="score-denom">/15</span></div>
+        <div class="score-band-name" style="color:${v.color}">${v.icon} ${v.label}</div>
+        <div class="score-band-sub">${v.range} point band</div>
+      </div>
+
+      <div class="verdict-card" style="background:${v.bg};border-color:${v.border}">
+        <div class="verdict-title" style="color:${v.color}">${v.headline}</div>
+        <div class="verdict-body">${v.body}</div>
+      </div>
+
+      <div class="breakdown">
+        ${sections.map(s => {
+          const sc = sectionScores[s.id];
+          const pct = Math.round((sc / s.max) * 100);
+          return `
+            <div class="breakdown-card">
+              <div class="bc-header">
+                <div class="bc-name" style="color:${s.color}">${s.icon} ${s.label}</div>
+                <div class="bc-score" style="color:${s.color}">${sc}/${s.max}</div>
+              </div>
+              <div class="bc-bar-track">
+                <div class="bc-bar-fill" style="width:${pct}%;background:${s.barColor}"></div>
+              </div>
+            </div>`;
+        }).join('')}
+      </div>
+
+      <div class="answer-log">
+        ${sections.map(s => {
+          const qs = s.questions;
+          const startIdx = allQ.findIndex(q => q.section.id === s.id);
+          return `
+            <div class="log-section-header" style="color:${s.color};border-bottom-color:rgba(${s.id==='s1'?'212, 146, 42':s.id==='s2'?'240, 184, 85':s.id==='s3'?'232, 224, 208':'148, 163, 184'},0.2)">
+              <span>${s.icon} ${s.label}</span>
+              <span style="font-family:var(--mono);font-size:11px">${sectionScores[s.id]}/${s.max}</span>
+            </div>
+            ${qs.map((q, qi) => {
+              const h = history[startIdx + qi];
+              return `
+                <div class="log-row">
+                  <span class="badge ${h.yes ? 'badge-yes' : 'badge-no'}">${h.yes ? 'YES' : 'NO'}</span>
+                  <span>${q.q}</span>
+                </div>`;
+            }).join('')}`;
+        }).join('')}
+      </div>
+
+      <button class="restart-btn" onclick="restart()">↺ Retake the checklist</button>
+    </div>`;
+}
+
+function restart() {
+  current = 0;
+  history = [];
+  sectionScores = { s1: 0, s2: 0, s3: 0, s4: 0 };
+  render();
+}
+
+render();
+</script>
+</body>
+</html>

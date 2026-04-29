@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How to Evaluate and Adopt AI for Your Business - Krishna Mohan</title>
+<meta name="description" content="Confused about where to start with AI for your business? Learn how to evaluate, select and manage AI tools using the same skills you already use to hire and manage people.">
+<meta name="author" content="Krishna Mohan">
+<meta name="keywords" content="AI adoption for small business, how to choose AI tools, AI strategy for SMB, practical AI guide, AI management skills, business AI implementation">
+<link rel="canonical" href="https://krishnamohan.co/articles/how-to-hire-ai-for-your-business">
+
+<!-- Open Graph for LinkedIn sharing -->
+<meta property="og:title" content="You Already Know How to Hire AI. You Just Don't Know It Yet.">
+<meta property="og:description" content="AI adoption feels intimidating because it is framed as a technology problem. Strip that away and it is a hiring and management problem - one every business leader has already solved before.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://krishnamohan.co/articles/how-to-hire-ai-for-your-business">
+<meta property="og:site_name" content="Krishna Mohan">
+<meta property="article:author" content="Krishna Mohan">
+<meta property="article:published_time" content="2026-04-01">
+<meta property="article:tag" content="AI Adoption">
+<meta property="article:tag" content="Business Strategy">
+<meta property="article:tag" content="AI Management">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="You Already Know How to Hire AI. You Just Don't Know It Yet.">
+<meta name="twitter:description" content="AI adoption is a hiring and management problem - one every business leader has already solved before. Here is how to apply what you already know.">
+
+<!-- Article Schema Markup -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "You Already Know How to Hire AI. You Just Don't Know It Yet.",
+  "description": "AI adoption feels intimidating because it is framed as a technology problem. Strip that away and it is a hiring and management problem - one every business leader has already solved before.",
+  "author": {
+    "@type": "Person",
+    "name": "Krishna Mohan",
+    "url": "https://krishnamohan.co",
+    "jobTitle": "AI Consultant, Educator and Practitioner"
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "Krishna Mohan",
+    "url": "https://krishnamohan.co"
+  },
+  "datePublished": "2026-04-01",
+  "dateModified": "2026-04-01",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://krishnamohan.co/articles/how-to-hire-ai-for-your-business"
+  },
+  "keywords": "AI adoption, small business AI, AI tools evaluation, AI management, business AI strategy",
+  "articleSection": "Business Strategy",
+  "timeRequired": "PT4M"
+}
+</script>
+
+<!-- FAQ Schema for AI search discoverability -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do I start adopting AI in my small business?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Start by defining a specific problem you want to solve and what a good outcome looks like. Then evaluate AI tools against that brief, exactly as you would evaluate a candidate against a job description. Pick a low-stakes pilot project to test before committing to anything significant."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I choose the right AI tool for my business?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Hire for fit, not prestige. The most powerful and expensive AI is almost never what a small or mid-sized business needs. Define the specific task, the expected output quality, and your budget, then find the tool that meets that brief with minimal oversight and maintenance."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are the risks of adopting AI in my business?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "AI cannot and will not solve all your problems. It will solve some, and it will introduce new ones - including over-reliance, accountability gaps, and confident-sounding outputs that turn out to be wrong. Managing these risks requires the same structured oversight you would apply to any new team member."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need a technical background to implement AI?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. The skills that matter most for AI adoption are the same ones that make a good manager: defining clear roles, setting expectations, evaluating performance, and knowing when something is not working. Technical knowledge helps but is not a prerequisite."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How is adopting AI similar to hiring an employee?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Both require you to define the role before evaluating options, assess fit over prestige, run a trial period, build in performance reviews, and manage ongoing output. The discipline of a good hiring process - multiple evaluation rounds, varied perspectives, and probing for weaknesses - is the same discipline that separates good AI decisions from expensive mistakes."
+      }
+    }
+  ]
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #0A1628;
+    --navy-card: #111f35;
+    --navy-light: #1a2d47;
+    --gold: #D4A043;
+    --gold-light: #e8b85a;
+    --white: #F5F0E8;
+    --muted: #8a9bb5;
+    --green: #22C55E;
+    --border: rgba(212,160,67,0.15);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: #071020;
+    color: var(--white);
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    line-height: 1.8;
+    font-size: 16px;
+  }
+
+  .page-panel {
+    background: var(--navy);
+    max-width: 1100px;
+    margin: 0 auto;
+    box-shadow: 0 0 80px rgba(0,0,0,0.6);
+    min-height: 100vh;
+  }
+
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(10,22,40,0.97);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    color: var(--white);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+
+  .hero {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 5rem 2rem 3rem;
+  }
+
+  .hero-tag {
+    display: inline-block;
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    border: 1px solid rgba(212,160,67,0.3);
+    padding: 0.3rem 0.8rem;
+    border-radius: 2px;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 600;
+    line-height: 1.15;
+    color: var(--white);
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.01em;
+  }
+
+  .hero-meta {
+    font-size: 0.8rem;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-meta span { color: var(--gold); margin: 0 0.5rem; }
+
+  .graphic-wrap {
+    max-width: 800px;
+    margin: 0 auto 4rem;
+    padding: 0 2rem;
+  }
+
+  .graphic-wrap svg {
+    width: 100%;
+    border-radius: 4px;
+    display: block;
+  }
+
+  .article {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0 2rem 6rem;
+  }
+
+  .intro {
+    font-size: 1.05rem;
+    color: var(--white);
+    line-height: 1.85;
+    margin-bottom: 2.5rem;
+    padding-bottom: 2.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .intro-quote {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--white);
+    border-left: 3px solid var(--gold);
+    padding-left: 1.25rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.75;
+  }
+
+  .intro p {
+    font-size: 1.05rem;
+    color: rgba(245,240,232,0.95);
+    margin-bottom: 1rem;
+  }
+
+  .intro p:last-child { margin-bottom: 0; }
+
+  .section { margin-bottom: 3rem; }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--border);
+    font-weight: normal;
+  }
+
+  .section-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--gold);
+    line-height: 1;
+    opacity: 0.6;
+    flex-shrink: 0;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--white);
+    line-height: 1.3;
+  }
+
+  .article p {
+    color: rgba(245,240,232,0.95);
+    margin-bottom: 1.1rem;
+    font-size: 0.975rem;
+  }
+
+  .callout {
+    border-left: 3px solid var(--gold);
+    padding: 1rem 1.5rem;
+    margin: 1.5rem 0;
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1rem;
+    color: var(--gold-light);
+    line-height: 1.8;
+    background: rgba(212,160,67,0.05);
+    border-radius: 0 4px 4px 0;
+  }
+
+  .highlight-question {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--gold);
+    line-height: 1.6;
+    margin: 1rem 0 1.25rem 0;
+    padding-left: 0.25rem;
+  }
+
+  .solution {
+    background: var(--navy-card);
+    border: 1px solid rgba(34,197,94,0.2);
+    border-left: 3px solid var(--green);
+    border-radius: 0 6px 6px 0;
+    padding: 1.25rem 1.5rem;
+    margin: 1.5rem 0;
+  }
+
+  .solution p {
+    color: rgba(245,240,232,0.92);
+    font-size: 1rem;
+    margin-bottom: 0 !important;
+    font-style: italic;
+    font-family: 'Playfair Display', serif;
+    line-height: 1.7;
+  }
+
+  .closing {
+    background: var(--navy-light);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 2rem;
+    margin-top: 3rem;
+  }
+
+  .closing h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .closing ul {
+    list-style: none;
+    margin: 0 0 1.75rem 0;
+    padding: 0;
+  }
+
+  .closing ul li {
+    color: rgba(245,240,232,0.92);
+    font-size: 0.975rem;
+    padding: 0.65rem 0 0.65rem 1.5rem;
+    border-bottom: 1px solid rgba(212,160,67,0.08);
+    position: relative;
+    line-height: 1.7;
+  }
+
+  .closing ul li::before {
+    content: '→';
+    color: var(--gold);
+    position: absolute;
+    left: 0;
+    font-size: 0.85rem;
+    top: 0.75rem;
+  }
+
+  .closing ul li strong {
+    color: var(--white);
+    font-weight: 500;
+  }
+
+  .closing ul li:last-child { border-bottom: none; }
+
+  .closing-bridge {
+    font-size: 0.975rem;
+    color: var(--muted);
+    font-style: italic;
+    margin-bottom: 1rem;
+    padding-top: 0.25rem;
+  }
+
+  .closing-para {
+    color: rgba(245,240,232,0.92);
+    font-size: 0.975rem;
+    line-height: 1.85;
+    margin-bottom: 0;
+  }
+
+  .cta-block {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .cta-text {
+    font-size: 0.875rem;
+    color: var(--muted);
+  }
+
+  .cta-btn {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--navy);
+    text-decoration: none;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.75rem 1.5rem;
+    border-radius: 2px;
+    transition: background 0.2s;
+    white-space: nowrap;
+  }
+
+  .cta-btn:hover { background: var(--gold-light); }
+
+  /* FAQ */
+  .faq-section {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0 2rem 5rem;
+  }
+
+  .faq-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .faq-item {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(212,160,67,0.08);
+  }
+
+  .faq-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+
+  .faq-item h3 {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--gold-light);
+    margin-bottom: 0.6rem;
+    line-height: 1.5;
+  }
+
+  .faq-item p {
+    color: rgba(245,240,232,0.85);
+    font-size: 0.925rem;
+    line-height: 1.75;
+    margin: 0;
+  }
+
+  .back-link {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 2rem 2rem 0;
+  }
+
+  .back-link a {
+    font-size: 0.8rem;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .back-link a:hover { color: var(--gold); }
+  .back-link a::before { content: '← '; }
+
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2rem;
+    text-align: center;
+    font-size: 0.75rem;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+  }
+
+  footer a { color: var(--gold); text-decoration: none; }
+
+  @media (max-width: 768px) {
+    .nav-links li:nth-child(3),
+    .nav-links li:nth-child(4) { display: none; }
+  }
+
+  @media (max-width: 600px) {
+    nav { padding: 1rem; }
+    .nav-links li:nth-child(2),
+    .nav-links li:nth-child(3),
+    .nav-links li:nth-child(4) { display: none; }
+    .hero { padding: 3rem 1.25rem 2rem; }
+    .graphic-wrap { padding: 0 1.25rem; }
+    .article { padding: 0 1.25rem 4rem; }
+    .faq-section { padding: 0 1.25rem 3rem; }
+    .back-link { padding: 1.5rem 1.25rem 0; }
+    .cta-block { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+<div class="page-panel">
+
+<nav>
+  <a href="https://krishnamohan.co" class="nav-logo">Krishna Mohan</a>
+  <ul class="nav-links">
+    <li><a href="https://krishnamohan.co/#about">About</a></li>
+    <li><a href="https://krishnamohan.co/#services">Services</a></li>
+    <li><a href="https://krishnamohan.co/#blog">Insights</a></li>
+    <li><a href="https://krishnamohan.co/#checklist">Free Checklist</a></li>
+    <li><a href="https://calendly.com/krishnamohn/30min">Book a Call</a></li>
+  </ul>
+</nav>
+
+<div class="back-link">
+  <a href="https://krishnamohan.co/#blog">Back to Insights</a>
+</div>
+
+<div class="hero">
+  <div class="hero-tag">Article</div>
+  <h1>You Already Know How to Hire AI. You Just Don't Know It Yet.</h1>
+  <div class="hero-meta">
+    April 2026 <span>·</span> Krishna Mohan <span>·</span> 4 min read
+  </div>
+</div>
+
+<div class="graphic-wrap">
+  <svg viewBox="0 0 680 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Quote by Krishna Mohan: The businesses that win this decade will not be the ones that understood AI the best. They will be the ones that managed it the best.">
+    <title>The businesses that win this decade will be the ones that managed AI the best - Krishna Mohan</title>
+    <desc>A pull quote from the article by Krishna Mohan, AI Consultant, on practical AI adoption for business leaders.</desc>
+    <rect x="0" y="0" width="680" height="400" fill="#0A1628"/>
+    <rect x="0" y="0" width="5" height="400" fill="#22C55E"/>
+    <rect x="40" y="44" width="48" height="2.5" fill="#D4A043" rx="1.5"/>
+    <text x="40" y="126" font-family="Georgia, serif" font-size="27" font-weight="700" fill="#F5F0E8" letter-spacing="-0.4">"The businesses that win this decade</text>
+    <text x="40" y="168" font-family="Georgia, serif" font-size="27" font-weight="400" fill="#8a9bb5" letter-spacing="-0.3">will not be the ones that understood</text>
+    <text x="40" y="210" font-family="Georgia, serif" font-size="27" font-weight="400" fill="#8a9bb5" letter-spacing="-0.3">AI the best.</text>
+    <text x="40" y="256" font-family="Georgia, serif" font-size="27" font-weight="700" fill="#F5F0E8" letter-spacing="-0.4">They will be the ones that</text>
+    <text x="40" y="298" font-family="Georgia, serif" font-size="27" font-weight="700" fill="#D4A043" letter-spacing="-0.4">managed it the best."</text>
+    <rect x="40" y="334" width="600" height="0.5" fill="#1E3A5F"/>
+    <text x="40" y="358" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="#D4A043" letter-spacing="0.1em">KRISHNA MOHAN</text>
+    <text x="640" y="358" font-family="Arial, sans-serif" font-size="12" fill="#22C55E" text-anchor="end">krishnamohan.co</text>
+  </svg>
+</div>
+
+<div class="article">
+
+  <div class="intro">
+    <span class="intro-quote">"I know we need to do something with AI ... But I don't know where to start. Hope I can act before it is too late!"</span>
+    <p>This is the sentiment I have heard from many Small to Medium Business owners. The anxiety and need for action are legitimate, and deservedly so.</p>
+    <p>What if I tell you that the answer lies in a pivot you are already capable of making: from managing Human Intelligence to managing Artificial Intelligence to benefit humans? The skills you have built over years of hiring, managing, and leading people are exactly the skills this moment demands. You just haven't applied them here yet.</p>
+  </div>
+
+  <!-- SECTION 1 -->
+  <div class="section">
+    <h2 class="section-header">
+      <span class="section-num">01</span>
+      <span class="section-title">Strip away the jargon. This is a resourcing decision.</span>
+    </h2>
+    <p>Think about what it means to bring someone new into your organisation. You identify a gap. You define the role: what needs to get done, what good looks like, what you can afford. You onboard, set expectations, and manage performance. When something isn't working, you course-correct.</p>
+    <p>The logic of bringing in an AI application is no different. Same gap, same brief, same performance expectations, same accountability.</p>
+    <div class="callout">"AI is not a mysterious force that only engineers can understand. It is an intelligent machine that comes with a certain set of capabilities, works within defined limits, delivers outputs at a certain quality level, and costs money to deploy and maintain. It has strengths you can leverage and weaknesses you need to manage. It performs well when given clear direction and poorly when left to figure things out on its own."</div>
+    <p>You have been managing Human Intelligence all your life. Now augment it with Artificial Intelligence, keeping in mind:</p>
+    <div class="solution"><p>"AI cannot and will not solve all your problems. It will solve some, and it will introduce new ones you are not yet equipped for."</p></div>
+  </div>
+
+  <!-- SECTION 2 -->
+  <div class="section">
+    <h2 class="section-header">
+      <span class="section-num">02</span>
+      <span class="section-title">Cut through the noise with one question</span>
+    </h2>
+    <p>The market is loud. Vendors overpromise. Consultants manufacture urgency. Peers claim their competitors are already ahead, a fact rarely verified.</p>
+    <p>The antidote is one question asked before anything else:</p>
+    <span class="highlight-question">What specific problem am I trying to solve, and what does a good outcome look like?</span>
+    <p>Every vendor, every demo, every peer recommendation gets filtered through that brief. If it cannot answer that question clearly, it does not belong in the conversation.</p>
+    <div class="callout">"The discipline of a good hiring process - multiple evaluation rounds, varied perspectives, reference checks that probe for weaknesses and crucially the 'fit' - is the same discipline that separates informed AI decisions from expensive mistakes."</div>
+  </div>
+
+  <!-- SECTION 3 -->
+  <div class="section">
+    <h2 class="section-header">
+      <span class="section-num">03</span>
+      <span class="section-title">The right resource for your road</span>
+    </h2>
+    <p>AI is not an incremental upgrade. It is as transformative as the internet was in the 1990s, changing not just what gets done but how work flows inside your company and across your ecosystem. New tools, new processes, new skill requirements will emerge. The businesses that adapt are the ones that treat this as a resourcing challenge, not a technology challenge.</p>
+    <p>That means finding the right AI application for your specific context. The same judgement you apply when recruiting people applies here.</p>
+    <div class="solution"><p>"When you have a bumpy road, a flashy Ferrari that gets everyone talking is not the one for you. Find the vehicle that is best for your road in terms of reliability, comfort and performance. Your AI need is radically different from that of a Google or NVIDIA. The goal is not the most impressive AI in your stack. It is the right AI application that delivers consistent value with minimal oversight."</p></div>
+  </div>
+
+  <!-- SECTION 4 -->
+  <div class="section">
+    <h2 class="section-header">
+      <span class="section-num">04</span>
+      <span class="section-title">Do not repeat your worst recruitment mistake</span>
+    </h2>
+    <p>Every AI tool is designed to impress. The demo is the interview, carefully staged, running on ideal data, performing exactly the tasks it was built to excel at.</p>
+    <div class="callout">"Remember the last time you brought in the wrong person - the candidate was articulate, confident and impressive, who revealed only what was necessary in the interview. Because interviews are optimised for performance, not honest self-assessment. Your questions were shaped by what you hoped to find, not what you needed to know. Do not make the same mistake in selecting the right AI application."</div>
+    <p>This is not a reason to hesitate. It is a reason to evaluate carefully, set expectations clearly, and build in the review process that every new addition to your team deserves.</p>
+  </div>
+
+  <!-- CLOSING -->
+  <div class="closing">
+    <h2>Actions to reorient from Human Management Skills to AI Management Skills</h2>
+    <ul>
+      <li><strong>Define the role first.</strong> Before evaluating any tool, write the brief. What task, what output, what cost, who manages it daily.</li>
+      <li><strong>Run a trial.</strong> Pilot on something complex enough to generate real learning, but low-stakes enough that a stumble costs insight rather than customers.</li>
+      <li><strong>Probe for weaknesses.</strong> Ask what the application does badly. Ask where it has fallen short in comparable deployments. The questions you would not skip when recruiting for a senior role apply here too.</li>
+      <li><strong>Build in the review.</strong> Thirty days, sixty days, ninety days. Is it performing against the brief? If not, course-correct early.</li>
+      <li><strong>Manage, don't just deploy.</strong> A new team member needs direction, feedback, and accountability. So does an AI application. Deploy-and-forget is how poor selections become expensive ones.</li>
+    </ul>
+    <p class="closing-bridge">These are not new skills. They are the same ones you have applied to every good hire you have ever made.</p>
+    <p class="closing-para">You have spent years building the instincts to find the right person for the right role, manage their performance, and make the hard calls when something isn't working. Those instincts are not obsolete in the age of AI. They are your greatest advantage. The only shift required is where you point them. Stop waiting for the perfect moment or the perfect technology. Define the role, find the right application, manage it like you mean it, and start before you feel ready. The businesses that win this decade will not be the ones that understood AI the best. They will be the ones that managed it the best.</p>
+    <div class="cta-block">
+      <span class="cta-text">Want a structured starting point?</span>
+      <a href="https://krishnamohan.co/#checklist" class="cta-btn">Get the Free AI Readiness Checklist →</a>
+    </div>
+  </div>
+
+</div>
+
+<!-- FAQ SECTION - optimised for Google Featured Snippets and AI search -->
+<div class="faq-section">
+  <h2>Frequently Asked Questions</h2>
+
+  <div class="faq-item">
+    <h3>How do I start adopting AI in my small business?</h3>
+    <p>Start by defining a specific problem you want to solve and what a good outcome looks like. Then evaluate AI tools against that brief, exactly as you would evaluate a candidate against a job description. Pick a low-stakes pilot project to test before committing to anything significant.</p>
+  </div>
+
+  <div class="faq-item">
+    <h3>How do I choose the right AI tool for my business?</h3>
+    <p>Hire for fit, not prestige. The most powerful and expensive AI is almost never what a small or mid-sized business needs. Define the specific task, the expected output quality, and your budget, then find the tool that meets that brief with minimal oversight and maintenance.</p>
+  </div>
+
+  <div class="faq-item">
+    <h3>What are the risks of adopting AI in my business?</h3>
+    <p>AI cannot and will not solve all your problems. It will solve some, and it will introduce new ones - including over-reliance, accountability gaps, and confident-sounding outputs that turn out to be wrong. Managing these risks requires the same structured oversight you would apply to any new team member.</p>
+  </div>
+
+  <div class="faq-item">
+    <h3>Do I need a technical background to implement AI?</h3>
+    <p>No. The skills that matter most for AI adoption are the same ones that make a good manager: defining clear roles, setting expectations, evaluating performance, and knowing when something is not working. Technical knowledge helps but is not a prerequisite.</p>
+  </div>
+
+  <div class="faq-item">
+    <h3>How is adopting AI similar to hiring an employee?</h3>
+    <p>Both require you to define the role before evaluating options, assess fit over prestige, run a trial period, build in performance reviews, and manage ongoing output. The discipline of a good hiring process - multiple evaluation rounds, varied perspectives, and probing for weaknesses - is the same discipline that separates good AI decisions from expensive mistakes.</p>
+  </div>
+</div>
+
+<footer>
+  <p>© 2026 <a href="https://krishnamohan.co">Krishna Mohan</a> · AI Consultant · Educator · Practitioner</p>
+</footer>
+
+</div>
+</body>
+</html>

@@ -344,9 +344,17 @@ Button hover states:
 - Hero photo: allow slight visual crop on mobile to maintain face visibility
 - Always include meaningful `alt` text
 
+### Code Architecture
+
+This project uses a separated architecture for performance:
+- `index.html`: Contains only markup and essential head scripts.
+- `index.css`: Dedicated stylesheet containing all global styles, design tokens, and layout rules. 
+
+**Do not use inline `<style>` tags in `index.html` for global styles.**
+
 ### Embedding photos in HTML
 
-Since this is a single-file HTML, reference images with:
+Reference images with:
 
 ```html
 <img src="KM_Presenting_Cropped_2.jpg" alt="Krishna Mohan presenting at an AI conference" ...>
